@@ -1,0 +1,19 @@
+<li class="comment{% if comment.parent %} children{% endif %}">
+    <div class="vcard bio">
+      <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
+    </div>
+    <div class="comment-body">
+      <h3>{{ comment.name }}</h3>
+      <div class="meta">{{ comment.created_at|date:"F d, Y \a\t g:i a" }}</div>
+      <p>{{ comment.message }}</p>
+      <p><a href="{% url 'blog_single' comment.post.slug %}?reply_to={{ comment.id }}" class="reply">Reply</a></p>
+    </div>
+    {% if comment.replies.exists %}
+    <ul class="children">
+      {% for reply in comment.replies.all %}
+      {% include 'comment.html' with comment=reply %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  
