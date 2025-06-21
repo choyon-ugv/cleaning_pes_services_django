@@ -69,14 +69,11 @@
                   <div class="form-field">
                     <div class="select-wrap">
                       <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                      <select name="service" id="service" class="form-control">
+                      <select name="service" id="service" class="form-control p-3">
                         <option value="">Select Services</option>
-                        <option value="">Spinal Manupulation</option>
-                        <option value="">Electrotherapy</option>
-                        <option value="">Manual Lymphatic</option>
-                        <option value="">Medical Acupuncture</option>
-                        <option value="">Therapeutic Exercise</option>
-                        <option value="">Joint Mobilization</option>
+                        {% for service in services %}
+                        <option value="">{{service.name}}</option>
+                        {% endfor %}
                       </select>
                     </div>
                   </div>
@@ -115,7 +112,7 @@
               <div class="opening-hours">
                 <h4>Opening Days:</h4>
                 <p class="pl-3">
-                  <span><strong>Monday – Friday:</strong> {{ business_hours.monday_friday_hours }}</span>
+                  <span><strong>Monday – Friday:</strong> {{ business_hours.working_hours }}</span>
                   <span><strong>Saturday :</strong> {{ business_hours.saturday_hours }}</span>
                 </p>
                 <h4>Vacations:</h4>
@@ -183,7 +180,7 @@
     <div class="row justify-content-center pb-5 mb-3">
       <div class="col-md-7 heading-section text-center ftco-animate">
         <span class="subheading">Services</span>
-        <h2>How We Works</h2>
+        <h2>Our Services</h2>
       </div>
     </div>
     <div class="row">
