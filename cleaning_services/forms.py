@@ -1,16 +1,17 @@
 from django import forms
+from .models import Appointment, Service
 
-class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100, required=True, label='Full Name')
-    email = forms.EmailField(required=True, label='Email Address')
-    subject = forms.CharField(max_length=200, required=True, label='Subject')
-    message = forms.CharField(widget=forms.Textarea, required=True, label='Message')
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['name', 'phone', 'address', 'service', 'message']
 
-class SubscribeForm(forms.Form):
-    email = forms.EmailField(required=True, label='Email Address')
-
-class CommentForm(forms.Form):
-    name = forms.CharField(max_length=100, required=True, label='Name')
-    email = forms.EmailField(required=True, label='Email')
-    website = forms.URLField(required=False, label='Website')
-    message = forms.CharField(widget=forms.Textarea, required=True, label='Message')
+    def __init__(self, *args, **kwargs):
+        super(AppointmentForm, self).__init__(*args, **kwargs)
+        self.fields['service'].queryset = Service.objects.all()
+        self.fields['service'].empty_label = "Select Services"
+        self.fields['service'].widget.attrs.update({'class': 'form-control'})
+        self.fields['name'].widget.attrs.update({'placeholder': 'Your Name', 'class': 'form-control'})
+        self.fields['phone'].widget.attrs.update({'placeholder': 'Phone umber', 'class': 'form-control'})
+        self.fields['address'].widget.attrs.update({'placeholder': 'Your Address', 'class': 'form-control'})
+        self.fields['message'].widget.attrs.update({'placeholder': 'Your Message', 'class': 'form-control'})
