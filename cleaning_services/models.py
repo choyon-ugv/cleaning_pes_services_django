@@ -93,3 +93,21 @@ class CounterStat(models.Model):
     def __str__(self):  
         return f"Experience: {self.years_experience} years, Customers: {self.happy_customers}, Services Delivered: {self.service_deliver}"
     
+
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    message = models.TextField()
+    image = models.ImageField(upload_to='testimonials/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name
+    
+class Project(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='projects/')
+    
+    def __str__(self):
+        return self.title
+    

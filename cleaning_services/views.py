@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import AppointmentForm
-from .models import CompanyInfo, BusinessHours, EmergencyContact, CounterStat, Service, Staff
+from .models import CompanyInfo, BusinessHours, EmergencyContact, CounterStat, Service, Staff, Testimonial, Project
 
 def home_view(request):
     company_info = CompanyInfo.objects.first()
@@ -11,6 +11,9 @@ def home_view(request):
     staff_list = Staff.objects.all()
     pest_services = Service.objects.filter(category='pest_control').order_by('created_at')
     cleaning_services = Service.objects.filter(category='cleaning').order_by('created_at')
+    testimonials = Testimonial.objects.all().order_by('-created_at')[:5] 
+    projects = Project.objects.all()
+
     
     context = {
         'company_info': company_info,
@@ -21,6 +24,8 @@ def home_view(request):
         'staff_list': staff_list,
         'pest_services': pest_services,
         'cleaning_services': cleaning_services,
+        'testimonials': testimonials,
+        'projects': projects,
     }
     return render(request, 'index.html', context)
 
