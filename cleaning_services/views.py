@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import AppointmentForm
-from .models import CompanyInfo, BusinessHours, EmergencyContact, CounterStat, Service
+from .models import CompanyInfo, BusinessHours, EmergencyContact, CounterStat, Service, Staff
 
 def home_view(request):
     company_info = CompanyInfo.objects.first()
@@ -8,6 +8,7 @@ def home_view(request):
     emergency_contact = EmergencyContact.objects.first()
     counter_stat = CounterStat.objects.first()
     services = Service.objects.all()
+    staff_list = Staff.objects.all()
     pest_services = Service.objects.filter(category='pest_control').order_by('created_at')
     cleaning_services = Service.objects.filter(category='cleaning').order_by('created_at')
     
@@ -17,6 +18,7 @@ def home_view(request):
         'emergency_contact': emergency_contact,
         'counter_stat': counter_stat,
         'services': services,
+        'staff_list': staff_list,
         'pest_services': pest_services,
         'cleaning_services': cleaning_services,
     }

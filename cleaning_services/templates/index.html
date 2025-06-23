@@ -82,7 +82,8 @@
               <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group py-md-4 py-2 px-4 px-md-0">
                   <label for="message">Message</label>
-                  <textarea class="form-control" rows="2" name="message" id="message" placeholder="Your Message"></textarea>
+                  <textarea class="form-control" rows="2" name="message" id="message"
+                    placeholder="Your Message"></textarea>
                 </div>
               </div>
               <div class="col-12 col-md d-flex align-items-center align-items-stretch">
@@ -183,7 +184,8 @@
       <div class="col-md-10 heading-section text-center ftco-animate">
         <span class="subheading">Our Services</span>
         <h2 class="mb-4">Pest Control & Cleaning Services</h2>
-        <p class="lead text-muted">We provide top-notch pest control and cleaning services to keep your environment safe and sparkling.</p>
+        <p class="lead text-muted">We provide top-notch pest control and cleaning services to keep your environment safe
+          and sparkling.</p>
       </div>
     </div>
 
@@ -200,7 +202,8 @@
                 {% if service.image %}
                 <img src="{{ service.image.url }}" alt="{{ service.name }}" class="img-fluid service-img rounded-top">
                 {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}" alt="Placeholder" class="img-fluid service-img rounded-top">
+                <img src="{% static 'images/placeholder-service.jpg' %}" alt="Placeholder"
+                  class="img-fluid service-img rounded-top">
                 {% endif %}
               </div>
               <div class="service-content p-4">
@@ -228,7 +231,8 @@
                 {% if service.image %}
                 <img src="{{ service.image.url }}" alt="{{ service.name }}" class="img-fluid service-img rounded-top">
                 {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}" alt="Placeholder" class="img-fluid service-img rounded-top">
+                <img src="{% static 'images/placeholder-service.jpg' %}" alt="Placeholder"
+                  class="img-fluid service-img rounded-top">
                 {% endif %}
               </div>
               <div class="service-content p-4">
@@ -262,78 +266,52 @@
           <p><a href="#" class="btn btn-secondary">View All Staff</a></p>
         </div>
       </div>
+
+      {% for staff in staff_list %}
       <div class="col-md-4 col-lg-3 ftco-animate d-flex">
         <div class="staff">
           <div class="img-wrap d-flex align-items-stretch">
-            <div class="img align-self-stretch" style="background-image: url({% static 'images/staff-1.jpg' %});"></div>
+            <div class="img align-self-stretch" style="background-image: url('{{ staff.image.url }}');"></div>
           </div>
           <div class="text pt-3 px-3 pb-4 text-center">
-            <h3>Lloyd Wilson</h3>
-            <span class="position mb-2">Office Cleaner</span>
+            <h3>{{ staff.name }}</h3>
+            <span class="position mb-2">{{ staff.position }}</span>
             <div class="faded">
               <ul class="ftco-social text-center">
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-google"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-instagram"></span></a></li>
+                {% if staff.twitter %}
+                <li class="ftco-animate">
+                  <a href="{{ staff.twitter }}" class="d-flex align-items-center justify-content-center">
+                    <span class="fa fa-twitter"></span></a>
+                </li>
+                {% endif %}
+                {% if staff.facebook %}
+                <li class="ftco-animate">
+                  <a href="{{ staff.facebook }}" class="d-flex align-items-center justify-content-center">
+                    <span class="fa fa-facebook"></span></a>
+                </li>
+                {% endif %}
+                {% if staff.google %}
+                <li class="ftco-animate">
+                  <a href="{{ staff.google }}" class="d-flex align-items-center justify-content-center">
+                    <span class="fa fa-google"></span></a>
+                </li>
+                {% endif %}
+                {% if staff.instagram %}
+                <li class="ftco-animate">
+                  <a href="{{ staff.instagram }}" class="d-flex align-items-center justify-content-center">
+                    <span class="fa fa-instagram"></span></a>
+                </li>
+                {% endif %}
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-lg-3 ftco-animate d-flex">
-        <div class="staff">
-          <div class="img-wrap d-flex align-items-stretch">
-            <div class="img align-self-stretch" style="background-image: url({% static 'images/staff-2.jpg' %});"></div>
-          </div>
-          <div class="text pt-3 px-3 pb-4 text-center">
-            <h3>Lloyd Wilson</h3>
-            <span class="position mb-2">Office Cleaner</span>
-            <div class="faded">
-              <ul class="ftco-social text-center">
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-google"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3 ftco-animate d-flex">
-        <div class="staff">
-          <div class="img-wrap d-flex align-items-stretch">
-            <div class="img align-self-stretch" style="background-image: url({% static 'images/staff-3.jpg' %});"></div>
-          </div>
-          <div class="text pt-3 px-3 pb-4 text-center">
-            <h3>Lloyd Wilson</h3>
-            <span class="position mb-2">Office Cleaner</span>
-            <div class="faded">
-              <ul class="ftco-social text-center">
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-google"></span></a></li>
-                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span
-                      class="fa fa-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
+
 
 <section class="ftco-section testimony-section ftco-bg-dark">
   <div class="container">

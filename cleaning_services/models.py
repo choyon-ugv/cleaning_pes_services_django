@@ -15,6 +15,21 @@ class Service(models.Model):
     def __str__(self):
         return self.name
     
+class Staff(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='staff_images/', blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    google = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.position}"
+    
 class Appointment(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
