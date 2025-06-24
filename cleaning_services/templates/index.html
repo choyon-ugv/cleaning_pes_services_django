@@ -3,34 +3,44 @@
 
 {% block title %}Home - Cleaning Company{% endblock %}
 
-
 {% block content %}
-<div class="hero-wrap js-fullheight" style="background-color: #000000;" data-stellar-background-ratio="0.5">
+<div class="hero-wrap js-fullheight" style="background-color: #000000;"
+  data-stellar-background-ratio="0.5">
   <div class="overlay"></div>
   <div class="container">
-    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-between"
+    <div
+      class="row no-gutters slider-text js-fullheight align-items-center justify-content-between"
       data-scrollax-parent="true">
       <div class="col-md-6 ftco-animate">
-        <h2 class="subheading">No. 1 Pest Control Service Company</h2>
-        <h1 class="mb-4">Let us do the dirty work, so you don't have to.</h1>
+        <h2 class="subheading">{{ hero_section.subheading }}</h2>
+        <h1 class="mb-4">{{ hero_section.main_heading }}</h1>
         <div class="d-flex">
           <p class="mb-0 mr-2">
-            <a href="#" class="btn btn-call-now py-3 px-5 d-inline-flex align-items-center justify-content-center">
-              <i class="fas fa-phone-alt me-2 icon-call" style="transform: rotate(90deg); margin-right: 10px;"></i>
-              Call Now <span class="ion-ios-arrow-forward ms-2"></span>
+            {% if contact.phone %}
+            <a href="tel:{{ contact.phone }}"
+              class="btn btn-call-now py-3 px-5 d-inline-flex align-items-center justify-content-center">
+              <i class="fas fa-phone-alt me-2 icon-call"
+                style="transform: rotate(90deg); margin-right: 10px;"></i>
+              Call Now
+              <span class="ion-ios-arrow-forward ms-2"></span>
             </a>
+            {% endif %}
           </p>
+
           <p class="mb-0">
-            <a href="#" class="btn btn-order-now py-3 px-5 d-inline-flex align-items-center justify-content-center">
-              <i class="fas fa-shopping-cart me-2 icon-order" style="margin-right: 10px;"></i>
+            <a href="/contact/"
+              class="btn btn-order-now py-3 px-5 d-inline-flex align-items-center justify-content-center">
+              <i class="fas fa-shopping-cart me-2 icon-order"
+                style="margin-right: 10px;"></i>
               Order Now <span class="ion-ios-arrow-forward ms-2"></span>
             </a>
           </p>
+
         </div>
       </div>
       <div class="col-md-5 ftco-animate">
         <div class="img-wrap">
-          <img src="{% static 'images/logo.webp' %}" alt="Cleaning Service" class="img-fluid rounded shadow">
+          <img src="{{ hero_section.image.url }}" alt="Cleaning Service" class="img-fluid rounded shadow">
         </div>
       </div>
     </div>
@@ -48,19 +58,22 @@
               <div class="col-12 col-md d-flex align-items-center pt-4 pt-md-0">
                 <div class="form-group py-md-4 py-2 px-4 px-md-0">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Your Name">
+                  <input type="text" class="form-control" name="name" id="name"
+                    placeholder="Your Name">
                 </div>
               </div>
               <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group py-md-4 py-2 px-4 px-md-0">
                   <label for="phone">Phone number</label>
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number">
+                  <input type="text" class="form-control" name="phone"
+                    id="phone" placeholder="Phone number">
                 </div>
               </div>
               <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group py-md-4 py-2 px-4 px-md-0">
                   <label for="address">Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Your Address">
+                  <input type="text" class="form-control" name="address"
+                    id="address" placeholder="Your Address">
                 </div>
               </div>
               <div class="col-12 col-md d-flex align-items-center">
@@ -68,11 +81,13 @@
                   <label for="service">Select Services</label>
                   <div class="form-field">
                     <div class="select-wrap">
-                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                      <select name="service" id="service" class="form-control p-3">
-                        <option value="">Select Services</option>
+                      <div class="icon"><span
+                          class="fa fa-chevron-down"></span></div>
+                      <select name="service" id="service"
+                        class="form-control p-3">
+                        <option value>Select Services</option>
                         {% for service in services %}
-                        <option value="">{{service.name}}</option>
+                        <option value>{{service.name}}</option>
                         {% endfor %}
                       </select>
                     </div>
@@ -82,13 +97,17 @@
               <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group py-md-4 py-2 px-4 px-md-0">
                   <label for="message">Message</label>
-                  <textarea class="form-control" rows="2" name="message" id="message"
+                  <textarea class="form-control" rows="2" name="message"
+                    id="message"
                     placeholder="Your Message"></textarea>
                 </div>
               </div>
-              <div class="col-12 col-md d-flex align-items-center align-items-stretch">
-                <div class="form-group py-md-4 py-2 px-4 px-md-0 d-flex align-items-stretch bg-primary">
-                  <input type="submit" value="Make an Appointment" class="btn btn-primary py-3 px-4"
+              <div
+                class="col-12 col-md d-flex align-items-center align-items-stretch">
+                <div
+                  class="form-group py-md-4 py-2 px-4 px-md-0 d-flex align-items-stretch bg-primary">
+                  <input type="submit" value="Make an Appointment"
+                    class="btn btn-primary py-3 px-4"
                     style="font-size: 0.9rem;">
                 </div>
               </div>
@@ -100,25 +119,25 @@
   </div>
 </section>
 
-
 <section class="ftco-section ftco-no-pt ftco-no-pb">
   <div class="container">
     <div class="row d-flex no-gutters">
       <div class="col-md-6 d-flex">
-        <div class="img d-flex align-items-center justify-content-center py-5 py-md-0"
-          style="background-image:url({{ company_info.image.url }});">
+        <div
+          class="img d-flex align-items-center justify-content-center py-5 py-md-0"
+          style="background-image:url({{ about_info.image.url }});">
           <div class="time-open-wrap">
             <div class="desc p-4">
               <h2>Business Hours</h2>
               <div class="opening-hours">
                 <h4>Opening Days:</h4>
                 <p class="pl-3">
-                  <span><strong>Monday – Friday:</strong> {{ business_hours.working_hours }}</span>
-                  <span><strong>Saturday :</strong> {{ business_hours.saturday_hours }}</span>
+                  <span><strong>Monday – Friday:</strong> {{ about_info.working_hours }}</span>
+                  <span><strong>Saturday :</strong> {{ about_info.saturday_hours }}</span>
                 </p>
                 <h4>Vacations:</h4>
                 <p class="pl-3">
-                  {% for day in business_hours.vacation_days.splitlines %}
+                  {% for day in about_info.vacation_days.splitlines %}
                   <span>{{ day }}</span>
                   {% endfor %}
                 </p>
@@ -134,36 +153,42 @@
       <div class="col-md-6 pl-md-5 pt-md-5">
         <div class="row justify-content-start py-5">
           <div class="col-md-12 heading-section ftco-animate">
-            <span class="subheading">{{ company_info.welcome_subheading }}</span>
-            <h2 class="mb-4">{{ company_info.welcome_heading }}</h2>
-            <p>{{ company_info.description }}</p>
+            <span class="subheading">{{ about_info.welcome_subheading }}</span>
+            <h2 class="mb-4">{{ about_info.welcome_heading }}</h2>
+            <p>{{ about_info.description }}</p>
           </div>
         </div>
         <div class="row ftco-counter py-5" id="section-counter">
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+          <div
+            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="{{ counter_stat.happy_customers }}">0</strong>
+                <strong class="number"
+                  data-number="{{ about_info.happy_customers }}">0</strong>
               </div>
               <div class="text">
                 <span>Happy <br>Customers</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+          <div
+            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="{{ counter_stat.service_deliver }}">0</strong>
+                <strong class="number"
+                  data-number="{{ about_info.service_deliver }}">0</strong>
               </div>
               <div class="text">
                 <span>Service <br>Delivered</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+          <div
+            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="{{ counter_stat.years_experience }}">0</strong>
+                <strong class="number"
+                  data-number="{{ about_info.years_experience }}">0</strong>
               </div>
               <div class="text">
                 <span>Years of <br>Experienced</span>
@@ -184,7 +209,8 @@
       <div class="col-md-10 heading-section text-center ftco-animate">
         <span class="subheading">Our Services</span>
         <h2 class="mb-4">Pest Control & Cleaning Services</h2>
-        <p class="lead text-muted">We provide top-notch pest control and cleaning services to keep your environment safe
+        <p class="lead text-muted">We provide top-notch pest control and
+          cleaning services to keep your environment safe
           and sparkling.</p>
       </div>
     </div>
@@ -200,9 +226,11 @@
             <div class="glass-card shadow ftco-animate">
               <div class="service-image rounded-top">
                 {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}" class="img-fluid service-img rounded-top">
+                <img src="{{ service.image.url }}" alt="{{ service.name }}"
+                  class="img-fluid service-img rounded-top">
                 {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}" alt="Placeholder"
+                <img src="{% static 'images/placeholder-service.jpg' %}"
+                  alt="Placeholder"
                   class="img-fluid service-img rounded-top">
                 {% endif %}
               </div>
@@ -229,9 +257,11 @@
             <div class="glass-card shadow ftco-animate">
               <div class="service-image rounded-top">
                 {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}" class="img-fluid service-img rounded-top">
+                <img src="{{ service.image.url }}" alt="{{ service.name }}"
+                  class="img-fluid service-img rounded-top">
                 {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}" alt="Placeholder"
+                <img src="{% static 'images/placeholder-service.jpg' %}"
+                  alt="Placeholder"
                   class="img-fluid service-img rounded-top">
                 {% endif %}
               </div>
@@ -251,9 +281,6 @@
   </div>
 </section>
 
-
-
-
 <section class="ftco-section ftco-no-pt">
   <div class="container">
     <div class="row">
@@ -261,7 +288,8 @@
         <div class="heading-section ftco-animate text-center text-lg-left">
           <span class="subheading">Team & Staff</span>
           <h2>Our Team</h2>
-          <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
+          <p>A small river named Duden flows by their place and supplies it with
+            the necessary regelialia. It is a
             paradisematic country</p>
           <p><a href="#" class="btn btn-secondary">View All Staff</a></p>
         </div>
@@ -271,7 +299,8 @@
       <div class="col-md-4 col-lg-3 ftco-animate d-flex">
         <div class="staff">
           <div class="img-wrap d-flex align-items-stretch">
-            <div class="img align-self-stretch" style="background-image: url('{{ staff.image.url }}');"></div>
+            <div class="img align-self-stretch"
+              style="background-image: url('{{ staff.image.url }}');"></div>
           </div>
           <div class="text pt-3 px-3 pb-4 text-center">
             <h3>{{ staff.name }}</h3>
@@ -280,25 +309,29 @@
               <ul class="ftco-social text-center">
                 {% if staff.twitter %}
                 <li class="ftco-animate">
-                  <a href="{{ staff.twitter }}" class="d-flex align-items-center justify-content-center">
+                  <a href="{{ staff.twitter }}"
+                    class="d-flex align-items-center justify-content-center">
                     <span class="fa fa-twitter"></span></a>
                 </li>
                 {% endif %}
                 {% if staff.facebook %}
                 <li class="ftco-animate">
-                  <a href="{{ staff.facebook }}" class="d-flex align-items-center justify-content-center">
+                  <a href="{{ staff.facebook }}"
+                    class="d-flex align-items-center justify-content-center">
                     <span class="fa fa-facebook"></span></a>
                 </li>
                 {% endif %}
                 {% if staff.google %}
                 <li class="ftco-animate">
-                  <a href="{{ staff.google }}" class="d-flex align-items-center justify-content-center">
+                  <a href="{{ staff.google }}"
+                    class="d-flex align-items-center justify-content-center">
                     <span class="fa fa-google"></span></a>
                 </li>
                 {% endif %}
                 {% if staff.instagram %}
                 <li class="ftco-animate">
-                  <a href="{{ staff.instagram }}" class="d-flex align-items-center justify-content-center">
+                  <a href="{{ staff.instagram }}"
+                    class="d-flex align-items-center justify-content-center">
                     <span class="fa fa-instagram"></span></a>
                 </li>
                 {% endif %}
@@ -312,11 +345,11 @@
   </div>
 </section>
 
-
 <section class="ftco-section testimony-section ftco-bg-dark">
   <div class="container">
     <div class="row justify-content-center pb-5 mb-3">
-      <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
+      <div
+        class="col-md-7 heading-section heading-section-white text-center ftco-animate">
         <span class="subheading">Testimonies</span>
         <h2>Happy Customer</h2>
       </div>
@@ -326,68 +359,84 @@
         <div class="carousel-testimony owl-carousel ftco-owl">
           <div class="item">
             <div class="testimony-wrap py-4">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-right"></span>
+              <div
+                class="icon d-flex align-items-center justify-content-center"><span
+                  class="fa fa-quote-right"></span>
               </div>
               <div class="text">
                 <div class="d-flex align-items-center mb-4">
-                  <div class="user-img" style="background-image: url({% static 'images/person_2.jpg' %})"></div>
+                  <div class="user-img"
+                    style="background-image: url({% static 'images/person_2.jpg' %})"></div>
                   <div class="pl-3">
                     <p class="name">Roger Scott</p>
                     <span class="position">Marketing Manager</span>
                   </div>
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                <p class="mb-1">Far far away, behind the word mountains, far
+                  from the countries Vokalia and Consonantia,
                   there live the blind texts.</p>
               </div>
             </div>
           </div>
           <div class="item">
             <div class="testimony-wrap py-4">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-right"></span>
+              <div
+                class="icon d-flex align-items-center justify-content-center"><span
+                  class="fa fa-quote-right"></span>
               </div>
               <div class="text">
                 <div class="d-flex align-items-center mb-4">
-                  <div class="user-img" style="background-image: url({% static 'images/person_3.jpg' %})"></div>
+                  <div class="user-img"
+                    style="background-image: url({% static 'images/person_3.jpg' %})"></div>
                   <div class="pl-3">
                     <p class="name">Roger Scott</p>
                     <span class="position">Marketing Manager</span>
                   </div>
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                <p class="mb-1">Far far away, behind the word mountains, far
+                  from the countries Vokalia and Consonantia,
                   there live the blind texts.</p>
               </div>
             </div>
           </div>
           <div class="item">
             <div class="testimony-wrap py-4">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-right"></span>
+              <div
+                class="icon d-flex align-items-center justify-content-center"><span
+                  class="fa fa-quote-right"></span>
               </div>
               <div class="text">
                 <div class="d-flex align-items-center mb-4">
-                  <div class="user-img" style="background-image: url({% static 'images/person_1.jpg' %})"></div>
+                  <div class="user-img"
+                    style="background-image: url({% static 'images/person_1.jpg' %})"></div>
                   <div class="pl-3">
                     <p class="name">Roger Scott</p>
                     <span class="position">Marketing Manager</span>
                   </div>
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                <p class="mb-1">Far far away, behind the word mountains, far
+                  from the countries Vokalia and Consonantia,
                   there live the blind texts.</p>
               </div>
             </div>
           </div>
           <div class="item">
             <div class="testimony-wrap py-4">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-right"></span>
+              <div
+                class="icon d-flex align-items-center justify-content-center"><span
+                  class="fa fa-quote-right"></span>
               </div>
               <div class="text">
                 <div class="d-flex align-items-center mb-4">
-                  <div class="user-img" style="background-image: url({% static 'images/person_2.jpg' %})"></div>
+                  <div class="user-img"
+                    style="background-image: url({% static 'images/person_2.jpg' %})"></div>
                   <div class="pl-3">
                     <p class="name">Roger Scott</p>
                     <span class="position">Marketing Manager</span>
                   </div>
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                <p class="mb-1">Far far away, behind the word mountains, far
+                  from the countries Vokalia and Consonantia,
                   there live the blind texts.</p>
               </div>
             </div>
@@ -409,8 +458,10 @@
     <div class="row">
       {% for project in projects %}
       <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="work img d-flex align-items-center" style="background-image: url('{{ project.image.url }}');">
-          <a href="{{ project.image.url }}" class="icon image-popup d-flex justify-content-center align-items-center">
+        <div class="work img d-flex align-items-center"
+          style="background-image: url('{{ project.image.url }}');">
+          <a href="{{ project.image.url }}"
+            class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="fa fa-expand"></span>
           </a>
           <div class="desc w-100 px-4 text-center pt-5 mt-5">
@@ -425,21 +476,19 @@
   </div>
 </section>
 
-
-
-<section class="ftco-section ftco-intro" style="background-image: url('{% static 'images/bg_3.jpg' %}');"
-  data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 text-center">
-        <h2>Together we will explore new things</h2>
-        <a href="" class="icon-video d-flex align-items-center justify-content-center"><span
-            class="fa fa-play"></span></a>
+<section class="video-section" style="padding: 0; margin: 0;">
+  <div class="container-fluid px-0">
+    {% if intro_section.video_file %}
+      <div class="video-container">
+        <video autoplay muted loop playsinline>
+          <source src="{{ intro_section.video_file.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
-    </div>
+    {% endif %}
   </div>
 </section>
+
 
 <section class="ftco-section bg-light">
   <div class="container">
@@ -453,10 +502,13 @@
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="block-7">
           <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa flaticon-sprayer"></span>
+            <div
+              class="icon d-flex align-items-center justify-content-center"><span
+                class="fa flaticon-sprayer"></span>
             </div>
             <h4 class="heading-2">Starter</h4>
-            <span class="price"><sup>$</sup> <span class="number">49</span></span>
+            <span class="price"><sup>$</sup> <span
+                class="number">49</span></span>
             <ul class="pricing-text mb-5">
               <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
               <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
@@ -471,10 +523,12 @@
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="block-7 active">
           <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span
+            <div
+              class="icon d-flex align-items-center justify-content-center"><span
                 class="fa flaticon-vacuum-cleaner"></span></div>
             <h4 class="heading-2">Standard</h4>
-            <span class="price"><sup>$</sup> <span class="number">79</span></span>
+            <span class="price"><sup>$</sup> <span
+                class="number">79</span></span>
             <ul class="pricing-text mb-5">
               <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
               <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
@@ -489,10 +543,13 @@
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="block-7">
           <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa flaticon-tap"></span>
+            <div
+              class="icon d-flex align-items-center justify-content-center"><span
+                class="fa flaticon-tap"></span>
             </div>
             <h4 class="heading-2">Premium</h4>
-            <span class="price"><sup>$</sup> <span class="number">109</span></span>
+            <span class="price"><sup>$</sup> <span
+                class="number">109</span></span>
             <ul class="pricing-text mb-5">
               <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
               <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
@@ -507,10 +564,12 @@
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="block-7">
           <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span
+            <div
+              class="icon d-flex align-items-center justify-content-center"><span
                 class="fa flaticon-cleaning"></span></div>
             <h4 class="heading-2">Platinum</h4>
-            <span class="price"><sup>$</sup> <span class="number">159</span></span>
+            <span class="price"><sup>$</sup> <span
+                class="number">159</span></span>
             <ul class="pricing-text mb-5">
               <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
               <li><span class="fa fa-check mr-2"></span>Vacuuming</li>

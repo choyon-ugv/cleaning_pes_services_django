@@ -149,7 +149,7 @@
             <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
           </div>
           <div class="col-md-6 d-flex align-items-center">
-            <form action="{% url 'subscribe' %}" method="POST" class="subscribe-form">
+            <form action="#" method="POST" class="subscribe-form">
               {% csrf_token %}
               <div class="form-group d-flex">
                 <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ subscribe_form.email.value|default_if_none:'' }}">
