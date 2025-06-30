@@ -1,182 +1,141 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Services - Cleaning Company{% endblock %}
+{% block title %}সেবা - ক্লিনিং কোম্পানি{% endblock %}
 
 {% block content %}
-<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/banner-img.webp' %}');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-end">
-      <div class="col-md-9 ftco-animate pb-5">
-        <p class="breadcrumbs mb-2">
-          <span class="mr-2"><a href="#">Home <i class="fa fa-chevron-right"></i></a></span>
-          <span>Services <i class="fa fa-chevron-right"></i></span>
-        </p>
-        <h1 class="mb-0 bread">Services</h1>
-      </div>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-green-800 to-red-800 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img src="{% static 'images/bangla-pattern.png' %}" alt="Bangla Pattern" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-red-900/80"></div>
     </div>
-  </div>
+    <div class="container mx-auto px-4 py-24 md:py-32 relative">
+        <div class="max-w-2xl">
+            <nav class="text-sm mb-4 font-noto-bengali">
+                <a href="{% url 'home' %}" class="hover:underline">হোম</a> 
+                <span class="mx-2">/</span> 
+                <span>সেবা</span>
+            </nav>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-noto-bengali">সেবা</h1>
+        </div>
+    </div>
 </section>
 
-<section class="ftco-section combined-service-section">
-  <div class="container">
-
-    <!-- Section Title -->
-    <div class="row justify-content-center pb-4 mb-4">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <span class="subheading">Our Services</span>
-        <h2 class="mb-4">Pest Control & Cleaning Services</h2>
-        <p class="lead text-muted">We provide top-notch pest control and
-          cleaning services to keep your environment safe
-          and sparkling.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- Left Column - Pest Control -->
-      <div class="col-md-6">
-        <h3 class="text-center text-success mb-4">🦟 Pest Control</h3>
-        <div class="row">
-          {% for service in services %}
-          {% if service.category == 'pest_control' %}
-          <div class="col-md-12 mb-4">
-            <div class="glass-card shadow ftco-animate">
-              <div class="service-image rounded-top">
-                {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}"
-                  class="img-fluid service-img rounded-top">
-                {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}"
-                  alt="Placeholder"
-                  class="img-fluid service-img rounded-top">
-                {% endif %}
-              </div>
-              <div class="service-content p-4">
-                <span class="badge bg-success mb-2">Pest Control</span>
-                <h4 class="heading mb-2">{{ service.name }}</h4>
-                <p class="text-muted">{{ service.description|truncatewords:20 }}</p>
-                <a href="#" class="btn-custom">Read More</a>
-              </div>
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}
+<!-- Services Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">আমাদের সেবা</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">পোকামাকড় নিয়ন্ত্রণ ও পরিচ্ছন্নতা সেবা</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
+                আমরা আপনার পরিবেশকে নিরাপদ ও ঝকঝকে রাখতে শীর্ষস্থানীয় পোকামাকড় নিয়ন্ত্রণ এবং পরিচ্ছন্নতা সেবা প্রদান করি।
+            </p>
         </div>
-      </div>
-
-      <!-- Right Column - Cleaning -->
-      <div class="col-md-6">
-        <h3 class="text-center text-primary mb-4">🧼 Cleaning</h3>
-        <div class="row">
-          {% for service in services %}
-          {% if service.category == 'cleaning' %}
-          <div class="col-md-12 mb-4">
-            <div class="glass-card shadow ftco-animate">
-              <div class="service-image rounded-top">
-                {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}"
-                  class="img-fluid service-img rounded-top">
-                {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}"
-                  alt="Placeholder"
-                  class="img-fluid service-img rounded-top">
-                {% endif %}
-              </div>
-              <div class="service-content p-4">
-                <span class="badge bg-primary mb-2">Cleaning</span>
-                <h4 class="heading mb-2">{{ service.name }}</h4>
-                <p class="text-muted">{{ service.description|truncatewords:20 }}</p>
-                <a href="#" class="btn-custom">Read More</a>
-              </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Pest Control -->
+            <div>
+                <h3 class="text-center text-green-800 text-2xl font-semibold mb-4 font-noto-bengali">🦟 পোকামাকড় নিয়ন্ত্রণ</h3>
+                <div class="space-y-6">
+                    {% for service in services %}
+                    {% if service.category == 'pest_control' %}
+                    <div class="glass-card bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-red-600">
+                        <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">পোকামাকড় নিয়ন্ত্রণ</span>
+                            <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
+                            <p class="text-gray-600 font-noto-bengali">{{ service.description|truncatewords:20 }}</p>
+                            <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-2 inline-block">আরও পড়ুন</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-          </div>
-          {% endif %}
-          {% endfor %}
+            <!-- Cleaning -->
+            <div>
+                <h3 class="text-center text-green-800 text-2xl font-semibold mb-4 font-noto-bengali">🧼 পরিচ্ছন্নতা</h3>
+                <div class="space-y-6">
+                    {% for service in services %}
+                    {% if service.category == 'cleaning' %}
+                    <div class="glass-card bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-red-600">
+                        <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">পরিচ্ছন্নতা</span>
+                            <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
+                            <p class="text-gray-600 font-noto-bengali">{{ service.description|truncatewords:20 }}</p>
+                            <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-2 inline-block">আরও পড়ুন</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<section class="ftco-section bg-light">
-  <div class="container">
-    <div class="row justify-content-center pb-5 mb-3">
-      <div class="col-md-7 heading-section text-center ftco-animate">
-        <span class="subheading mb-3">Price & Plans</span>
-        <h2>Choose Your Perfect Plans</h2>
-      </div>
+<!-- Pricing Section -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">মূল্য এবং পরিকল্পনা</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আপনার নিখুঁত পরিকল্পনা নির্বাচন করুন</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                <span class="text-3xl text-green-800 fa flaticon-sprayer mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">স্টার্টার</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>49</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600 transform scale-105">
+                <span class="text-3xl text-green-800 fa flaticon-vacuum-cleaner mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">স্ট্যান্ডার্ড</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>79</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                <span class="text-3xl text-green-800 fa flaticon-tap mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">প্রিমিয়াম</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>109</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                <span class="text-3xl text-green-800 fa flaticon-cleaning mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">প্লাটিনাম</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>159</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7">
-          <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa flaticon-sprayer"></span></div>
-            <h4 class="heading-2">Starter</h4>
-            <span class="price"><sup>$</sup> <span class="number">49</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7 active">
-          <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa flaticon-vacuum-cleaner"></span></div>
-            <h4 class="heading-2">Standard</h4>
-            <span class="price"><sup>$</sup> <span class="number">79</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7">
-          <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa flaticon-tap"></span></div>
-            <h4 class="heading-2">Premium</h4>
-            <span class="price"><sup>$</sup> <span class="number">109</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7">
-          <div class="text-center">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa flaticon-cleaning"></span></div>
-            <h4 class="heading-2">Platinum</h4>
-            <span class="price"><sup>$</sup> <span class="number">159</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 {% endblock %}

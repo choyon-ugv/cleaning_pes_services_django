@@ -1,168 +1,161 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Contact - Cleaning Company{% endblock %}
+{% block title %}যোগাযোগ - ক্লিনিং কোম্পানি{% endblock %}
 
 {% block content %}
-<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_2.jpg' %}');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-end">
-      <div class="col-md-9 ftco-animate pb-5">
-        <p class="breadcrumbs mb-2">
-          <span class="mr-2"><a href="{% url 'home' %}">Home <i class="fa fa-chevron-right"></i></a></span>
-          <span>Contact <i class="fa fa-chevron-right"></i></span>
-        </p>
-        <h1 class="mb-0 bread">Contact</h1>
-      </div>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-green-800 to-red-800 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img src="{% static 'images/bangla-pattern.png' %}" alt="Bangla Pattern" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-red-900/80"></div>
     </div>
-  </div>
-</section>
-
-<section class="ftco-section bg-light">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="wrapper">
-          <div class="row mb-5">
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-map-marker"></span>
-                </div>
-                <div class="text">
-                  <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-phone"></span>
-                </div>
-                <div class="text">
-                  <p><span>Phone:</span> <a href="tel://1235235598">+ 1235 2355 98</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-paper-plane"></span>
-                </div>
-                <div class="text">
-                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-globe"></span>
-                </div>
-                <div class="text">
-                  <p><span>Website</span> <a href="#">yoursite.com</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row no-gutters">
-            <div class="col-md-7">
-              <div class="contact-wrap w-100 p-md-5 p-4">
-                <h3 class="mb-4">Contact Us</h3>
-                {% if messages %}
-                  {% for message in messages %}
-                    <div class="mb-4 {% if message.tags == 'success' %}alert alert-success{% else %}alert alert-danger{% endif %}" role="alert">
-                      {{ message }}
-                    </div>
-                  {% endfor %}
-                {% endif %}
-                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="label" for="name">Full Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ form.name.value|default_if_none:'' }}">
-                        {% if form.name.errors %}
-                          <div class="text-danger">{{ form.name.errors }}</div>
-                        {% endif %}
-                      </div>
-                    </div>
-                    <div class="col-md-6"> 
-                      <div class="form-group">
-                        <label class="label" for="email">Email Address</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}">
-                        {% if form.email.errors %}
-                          <div class="text-danger">{{ form.email.errors }}</div>
-                        {% endif %}
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="label" for="subject">Subject</label>
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" value="{{ form.subject.value|default_if_none:'' }}">
-                        {% if form.subject.errors %}
-                          <div class="text-danger">{{ form.subject.errors }}</div>
-                        {% endif %}
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="label" for="message">Message</label>
-                        <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message">{{ form.message.value|default_if_none:'' }}</textarea>
-                        {% if form.message.errors %}
-                          <div class="text-danger">{{ form.message.errors }}</div>
-                        {% endif %}
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary">
-                        <div class="submitting"></div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="col-md-5 d-flex align-items-stretch">
-              <div class="info-wrap w-100 p-5 img" style="background-image: url({% static 'images/about.jpg' %});">
-              </div>
-            </div>
-          </div>
+    <div class="container mx-auto px-4 py-24 md:py-32 relative">
+        <div class="max-w-2xl">
+            <nav class="text-sm mb-4 font-noto-bengali">
+                <a href="{% url 'home' %}" class="hover:underline">হোম</a> 
+                <span class="mx-2">/</span> 
+                <span>যোগাযোগ</span>
+            </nav>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-noto-bengali">যোগাযোগ</h1>
         </div>
-      </div>
-      <div class="col-md-12">
-        <div id="map" class="map"></div>
-      </div>
     </div>
-  </div>
 </section>
 
-<section class="ftco-section ftco-no-pt ftco-no-pb bg-primary">
-  <div class="container">
-    <div class="row d-flex justify-content-center">
-      <div class="col-lg-8 py-4">
-        <div class="row">
-          <div class="col-md-6 ftco-animate d-flex align-items-center">
-            <h2 class="mb-0" style="color:white; font-size: 24px;">Subcribe to our Newsletter</h2>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" method="POST" class="subscribe-form">
-              {% csrf_token %}
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ subscribe_form.email.value|default_if_none:'' }}">
-                <input type="submit" value="Subscribe" class="submit px-3">
-              </div>
-              {% if subscribe_form.email.errors %}
-                <div class="text-danger">{{ subscribe_form.email.errors }}</div>
-              {% endif %}
+<!-- Contact Info and Form Section -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 gap-8">
+            <!-- Contact Info Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                    <span class="text-3xl text-green-800 fa fa-map-marker mb-4 block"></span>
+                    <p class="font-noto-bengali text-gray-600">
+                        <span class="font-semibold">ঠিকানা:</span> ১৯৮ ওয়েস্ট ২১তম স্ট্রিট, স্যুট ৭২১, নিউ ইয়র্ক, এনওয়াই ১০০১৬
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                    <span class="text-3xl text-green-800 fa fa-phone mb-4 block"></span>
+                    <p class="font-noto-bengali text-gray-600">
+                        <span class="font-semibold">ফোন:</span> 
+                        <a href="tel://1235235598" class="text-red-600 hover:underline">+১২৩৫ ২৩৫৫ ৯৮</a>
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                    <span class="text-3xl text-green-800 fa fa-paper-plane mb-4 block"></span>
+                    <p class="font-noto-bengali text-gray-600">
+                        <span class="font-semibold">ইমেইল:</span> 
+                        <a href="mailto:info@yoursite.com" class="text-red-600 hover:underline">info@yoursite.com</a>
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                    <span class="text-3xl text-green-800 fa fa-globe mb-4 block"></span>
+                    <p class="font-noto-bengali text-gray-600">
+                        <span class="font-semibold">ওয়েবসাইট:</span> 
+                        <a href="#" class="text-red-600 hover:underline">yoursite.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Form and Image -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 border-t-4 border-red-600">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4 font-noto-bengali">আমাদের সাথে যোগাযোগ করুন</h3>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="mb-4 {% if message.tags == 'success' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %} p-4 rounded-lg font-noto-bengali">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="POST" id="contactForm" name="contactForm" class="contactForm font-noto-bengali">
+                        {% csrf_token %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label class="block text-green-800 font-medium" for="name">পুরো নাম</label>
+                                <input type="text" class="form-control w-full border rounded-lg p-3" name="name" id="name" placeholder="নাম" value="{{ form.name.value|default_if_none:'' }}">
+                                {% if form.name.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.name.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="block text-green-800 font-medium" for="email">ইমেইল ঠিকানা</label>
+                                <input type="email" class="form-control w-full border rounded-lg p-3" name="email" id="email" placeholder="ইমেইল" value="{{ form.email.value|default_if_none:'' }}">
+                                {% if form.email.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group md:col-span-2">
+                                <label class="block text-green-800 font-medium" for="subject">বিষয়</label>
+                                <input type="text" class="form-control w-full border rounded-lg p-3" name="subject" id="subject" placeholder="বিষয়" value="{{ form.subject.value|default_if_none:'' }}">
+                                {% if form.subject.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.subject.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group md:col-span-2">
+                                <label class="block text-green-800 font-medium" for="message">বার্তা</label>
+                                <textarea name="message" class="form-control w-full border rounded-lg p-3" id="message" cols="30" rows="4" placeholder="বার্তা">{{ form.message.value|default_if_none:'' }}</textarea>
+                                {% if form.message.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.message.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group md:col-span-2">
+                                <input type="submit" value="বার্তা পাঠান" class="btn bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Image -->
+                <div class="relative">
+                    <img src="{% static 'images/about.jpg' %}" alt="Contact Image" class="w-full h-full object-cover rounded-lg shadow-lg border-2 border-gold-500">
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="mt-8">
+                <div id="map" class="w-full h-96 rounded-lg shadow-lg"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-12 bg-green-800 text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <h2 class="text-2xl font-bold font-noto-bengali">আমাদের নিউজলেটারে সাবস্ক্রাইব করুন</h2>
+            <form action="#" method="POST" class="subscribe-form font-noto-bengali">
+                {% csrf_token %}
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="text" class="form-control w-full border rounded-lg p-3" name="email" placeholder="ইমেইল ঠিকানা লিখুন" value="{{ subscribe_form.email.value|default_if_none:'' }}">
+                    <input type="submit" value="সাবস্ক্রাইব" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
+                    {% if subscribe_form.email.errors %}
+                        <div class="text-red-200 text-sm mt-2">{{ subscribe_form.email.errors }}</div>
+                    {% endif %}
+                </div>
             </form>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
+
+{% block extra_js %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script>
+    // Initialize Google Map
+    function initMap() {
+        const location = { lat: 40.748817, lng: -73.985428 }; // Example: New York coordinates
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: location,
+        });
+        new google.maps.Marker({
+            position: location,
+            map: map,
+            title: "Cleaning Company",
+        });
+    }
+    window.onload = initMap;
+</script>
+{% endblock %}
 {% endblock %}

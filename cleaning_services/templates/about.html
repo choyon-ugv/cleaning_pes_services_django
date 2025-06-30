@@ -1,167 +1,159 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}About Us - Cleaning Company{% endblock %}
+{% block title %}আমাদের সম্পর্কে - ক্লিনিং কোম্পানি{% endblock %}
 
 {% block content %}
-<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/ui2.png' %}');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-end">
-      <div class="col-md-9 ftco-animate pb-5">
-        <p class="breadcrumbs mb-2">
-          <span class="mr-2"><a href="">Home <i class="fa fa-chevron-right"></i></a></span>
-          <span>About us <i class="fa fa-chevron-right"></i></span>
-        </p>
-        <h1 class="mb-0 bread">About Us</h1>
-      </div>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-green-800 to-red-800 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img src="{% static 'images/bangla-pattern.png' %}" alt="Bangla Pattern" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-red-900/80"></div>
     </div>
-  </div>
+    <div class="container mx-auto px-4 py-24 md:py-32 relative">
+        <div class="max-w-2xl">
+            <nav class="text-sm mb-4 font-noto-bengali">
+                <a href="/" class="hover:underline">হোম</a> 
+                <span class="mx-2">/</span> 
+                <span>আমাদের সম্পর্কে</span>
+            </nav>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fade-in font-noto-bengali">আমাদের সম্পর্কে</h1>
+        </div>
+    </div>
 </section>
 
-<section class="ftco-section ftco-no-pt ftco-no-pb">
-  <div class="container">
-    <div class="row d-flex no-gutters">
-      <div class="col-md-6 d-flex">
-        <div
-          class="img d-flex align-items-center justify-content-center py-5 py-md-0"
-          style="background-image:url({{ about_info.image.url }});">
-          <div class="time-open-wrap">
-            <div class="desc p-4">
-              <h2>Business Hours</h2>
-              <div class="opening-hours">
-                <h4>Opening Days:</h4>
-                <p class="pl-3">
-                  <span><strong>Monday – Friday:</strong> {{ about_info.working_hours }}</span>
-                  <span><strong>Saturday :</strong> {{ about_info.saturday_hours }}</span>
-                </p>
-                <h4>Vacations:</h4>
-                <p class="pl-3">
-                  {% for day in about_info.vacation_days.splitlines %}
-                  <span>{{ day }}</span>
-                  {% endfor %}
-                </p>
-              </div>
+<!-- About Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <img src="{{ about_info.image.url }}" alt="About Image" class="w-full h-96 object-cover rounded-lg shadow-lg border-2 border-gold-500">
+                <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-6 rounded-b-lg font-noto-bengali">
+                    <h3 class="text-xl font-semibold mb-4 text-green-800">ব্যবসার সময়</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-medium">খোলার দিন:</h4>
+                            <p class="text-gray-600">
+                                <span class="block"><strong>সোমবার – শুক্রবার:</strong> {{ about_info.working_hours }}</span>
+                                <span class="block"><strong>শনিবার:</strong> {{ about_info.saturday_hours }}</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">ছুটির দিন:</h4>
+                            <p class="text-gray-600">
+                                {% for day in about_info.vacation_days.splitlines %}
+                                <span class="block">{{ day }}</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-green-100 rounded-lg">
+                        <h3 class="text-lg font-semibold text-green-800">জরুরী যোগাযোগ</h3>
+                        <p class="text-gray-600">{{ emergency_contact.phone }}</p>
+                    </div>
+                </div>
             </div>
-            <div class="desc p-4 bg-secondary">
-              <h3 class="heading">For Emergency Cases</h3>
-              <span class="phone">{{ emergency_contact.phone }}</span>
+            <div>
+                <span class="text-red-600 font-semibold font-noto-bengali">{{ about_info.welcome_subheading }}</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-green-800 font-noto-bengali">{{ about_info.welcome_heading }}</h2>
+                <p class="text-gray-600 mb-6 font-noto-bengali">{{ about_info.description }}</p>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.happy_customers }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali">সন্তুষ্ট গ্রাহক</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.service_deliver }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali">সেবা প্রদান</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.years_experience }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali">অভিজ্ঞতার বছর</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="col-md-6 pl-md-5 pt-md-5">
-        <div class="row justify-content-start py-5">
-          <div class="col-md-12 heading-section ftco-animate">
-            <span class="subheading">{{ about_info.welcome_subheading }}</span>
-            <h2 class="mb-4">{{ about_info.welcome_heading }}</h2>
-            <p>{{ about_info.description }}</p>
-          </div>
-        </div>
-        <div class="row ftco-counter py-5" id="section-counter">
-          <div
-            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number"
-                  data-number="{{ about_info.happy_customers }}">0</strong>
-              </div>
-              <div class="text">
-                <span>Happy <br>Customers</span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number"
-                  data-number="{{ about_info.service_deliver }}">0</strong>
-              </div>
-              <div class="text">
-                <span>Service <br>Delivered</span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number"
-                  data-number="{{ about_info.years_experience }}">0</strong>
-              </div>
-              <div class="text">
-                <span>Years of <br>Experienced</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<section class="ftco-section ftco-no-pt">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-lg-3 pr-md-4 pb-lg-0 pb-4">
-        <div class="heading-section ftco-animate text-center text-lg-left">
-          <span class="subheading">Team & Staff</span>
-          <h2>Our Team</h2>
-          <p>A small river named Duden flows by their place and supplies it with
-            the necessary regelialia. It is a
-            paradisematic country</p>
-          <p><a href="#" class="btn btn-secondary">View All Staff</a></p>
+<!-- Team Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">টিম এবং কর্মী</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমাদের টিমের সাথে পরিচিত হন</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
+                আমাদের নিবেদিত টিম পেশাদারিত্ব এবং যত্নের সাথে ব্যতিক্রমী পরিচ্ছন্নতা সেবা প্রদানে প্রতিশ্রুতিবদ্ধ।
+            </p>
         </div>
-      </div>
-
-      {% for staff in staff_list %}
-      <div class="col-md-4 col-lg-3 ftco-animate d-flex">
-        <div class="staff">
-          <div class="img-wrap d-flex align-items-stretch">
-            <div class="img align-self-stretch"
-              style="background-image: url('{{ staff.image.url }}');"></div>
-          </div>
-          <div class="text pt-3 px-3 pb-4 text-center">
-            <h3>{{ staff.name }}</h3>
-            <span class="position mb-2">{{ staff.position }}</span>
-            <div class="faded">
-              <ul class="ftco-social text-center">
-                {% if staff.twitter %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.twitter }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-twitter"></span></a>
-                </li>
-                {% endif %}
-                {% if staff.facebook %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.facebook }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-facebook"></span></a>
-                </li>
-                {% endif %}
-                {% if staff.google %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.google }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-google"></span></a>
-                </li>
-                {% endif %}
-                {% if staff.instagram %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.instagram }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-instagram"></span></a>
-                </li>
-                {% endif %}
-              </ul>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for staff in staff_list %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-t-4 border-red-600">
+                <div class="h-64 bg-cover bg-center" style="background-image: url('{{ staff.image.url }}');"></div>
+                <div class="p-6 text-center font-noto-bengali">
+                    <h3 class="text-xl font-semibold text-green-800">{{ staff.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ staff.position }}</p>
+                    <div class="flex justify-center space-x-4">
+                        {% if staff.twitter %}
+                        <a href="{{ staff.twitter }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                        {% if staff.facebook %}
+                        <a href="{{ staff.facebook }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        {% endif %}
+                        {% if staff.google %}
+                        <a href="{{ staff.google }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        {% endif %}
+                        {% if staff.instagram %}
+                        <a href="{{ staff.instagram }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-          </div>
+            {% endfor %}
         </div>
-      </div>
-      {% endfor %}
+        <div class="text-center mt-8">
+            <a href="#" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">সকল কর্মী দেখুন</a>
+        </div>
     </div>
-  </div>
 </section>
+
+<!-- Include Tailwind CSS, Font Awesome, and Noto Serif Bengali -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    .font-noto-bengali {
+        font-family: 'Noto Serif Bengali', serif;
+    }
+</style>
+
+<!-- Counter Animation Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.text-3xl[data-number]');
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-number');
+            const count = +counter.innerText;
+            const increment = target / 100;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+});
+</script>
 {% endblock %}

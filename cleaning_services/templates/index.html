@@ -1,587 +1,404 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - Cleaning Company{% endblock %}
+{% block title %}হোম - ক্লিনিং কোম্পানি{% endblock %}
 
 {% block content %}
-<div class="hero-wrap js-fullheight" style="background-color: #000000;"
-  data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div
-      class="row no-gutters slider-text js-fullheight align-items-center justify-content-between"
-      data-scrollax-parent="true">
-      <div class="col-md-6 ftco-animate">
-        <h2 class="subheading">{{ hero_section.subheading }}</h2>
-        <h1 class="mb-4">{{ hero_section.main_heading }}</h1>
-        <div class="d-flex">
-          <p class="mb-0 mr-2">
-            {% if contact.phone %}
-            <a href="tel:{{ contact.phone }}"
-              class="btn btn-call-now py-3 px-5 d-inline-flex align-items-center justify-content-center">
-              <i class="fas fa-phone-alt me-2 icon-call"
-                style="transform: rotate(90deg); margin-right: 10px;"></i>
-              Call Now
-              <span class="ion-ios-arrow-forward ms-2"></span>
-            </a>
-            {% endif %}
-          </p>
-
-          <p class="mb-0">
-            <a href="/contact/"
-              class="btn btn-order-now py-3 px-5 d-inline-flex align-items-center justify-content-center">
-              <i class="fas fa-shopping-cart me-2 icon-order"
-                style="margin-right: 10px;"></i>
-              Order Now <span class="ion-ios-arrow-forward ms-2"></span>
-            </a>
-          </p>
-
-        </div>
-      </div>
-      <div class="col-md-5 ftco-animate">
-        <div class="img-wrap">
-          <img src="{{ hero_section.image.url }}" alt="Cleaning Service" class="img-fluid rounded shadow">
-        </div>
-      </div>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-green-800 to-red-800 text-white overflow-hidden h-screen flex items-center">
+    <div class="absolute inset-0 opacity-10">
+        <img src="{% static 'images/bangla-pattern.png' %}" alt="Bangla Pattern" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-red-900/80"></div>
     </div>
-  </div>
-</div>
+    <div class="container mx-auto px-4 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="text-2xl font-semibold text-gold-400 font-noto-bengali">{{ hero_section.subheading }}</h2>
+                <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-6 font-noto-bengali">{{ hero_section.main_heading }}</h1>
+                <div class="flex space-x-4">
+                    {% if contact.phone %}
+                    <a href="tel:{{ contact.phone }}" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition flex items-center font-noto-bengali">
+                        <i class="fas fa-phone-alt mr-2" style="transform: rotate(90deg);"></i> এখন কল করুন
+                    </a>
+                    {% endif %}
+                    <a href="/contact/" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition flex items-center font-noto-bengali">
+                        <i class="fas fa-shopping-cart mr-2"></i> এখন অর্ডার করুন
+                    </a>
+                </div>
+            </div>
+            <div>
+                <img src="{{ hero_section.image.url }}" alt="Cleaning Service" class="w-full rounded-lg shadow-lg border-2 border-gold-500">
+            </div>
+        </div>
+    </div>
+</section>
 
-<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row d-md-flex justify-content-center">
-      <div class="col-md-12">
-        <div class="wrap-appointment bg-white d-md-flex pl-md-4 pb-5 pb-md-0">
-          <form action="#" class="appointment w-100">
-            <div class="row justify-content-center">
-              <div class="col-12 col-md d-flex align-items-center pt-4 pt-md-0">
-                <div class="form-group py-md-4 py-2 px-4 px-md-0">
-                  <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name"
-                    placeholder="Your Name">
+<!-- Appointment Section -->
+<section class="py-16 bg-gray-100 relative">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <form action="#" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 font-noto-bengali">
+                <div class="form-group">
+                    <label for="name" class="block text-green-800 font-medium">নাম</label>
+                    <input type="text" class="form-control w-full border rounded-lg p-3" name="name" id="name" placeholder="আপনার নাম">
                 </div>
-              </div>
-              <div class="col-12 col-md d-flex align-items-center">
-                <div class="form-group py-md-4 py-2 px-4 px-md-0">
-                  <label for="phone">Phone number</label>
-                  <input type="text" class="form-control" name="phone"
-                    id="phone" placeholder="Phone number">
+                <div class="form-group">
+                    <label for="phone" class="block text-green-800 font-medium">ফোন নম্বর</label>
+                    <input type="text" class="form-control w-full border rounded-lg p-3" name="phone" id="phone" placeholder="ফোন নম্বর">
                 </div>
-              </div>
-              <div class="col-12 col-md d-flex align-items-center">
-                <div class="form-group py-md-4 py-2 px-4 px-md-0">
-                  <label for="address">Address</label>
-                  <input type="text" class="form-control" name="address"
-                    id="address" placeholder="Your Address">
+                <div class="form-group">
+                    <label for="address" class="block text-green-800 font-medium">ঠিকানা</label>
+                    <input type="text" class="form-control w-full border rounded-lg p-3" name="address" id="address" placeholder="আপনার ঠিকানা">
                 </div>
-              </div>
-              <div class="col-12 col-md d-flex align-items-center">
-                <div class="form-group py-md-4 py-2 px-4 px-md-0">
-                  <label for="service">Select Services</label>
-                  <div class="form-field">
-                    <div class="select-wrap">
-                      <div class="icon"><span
-                          class="fa fa-chevron-down"></span></div>
-                      <select name="service" id="service"
-                        class="form-control p-3">
-                        <option value>Select Services</option>
-                        {% for service in services %}
-                        <option value>{{service.name}}</option>
-                        {% endfor %}
-                      </select>
+                <div class="form-group">
+                    <label for="service" class="block text-green-800 font-medium">সেবা নির্বাচন করুন</label>
+                    <div class="relative">
+                        <select name="service" id="service" class="form-control w-full border rounded-lg p-3 appearance-none">
+                            <option value>সেবা নির্বাচন করুন</option>
+                            {% for service in services %}
+                            <option value>{{ service.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="absolute right-3 top-1/2 transform -translate-y-1/2 fa fa-chevron-down"></span>
                     </div>
-                  </div>
                 </div>
-              </div>
-              <div class="col-12 col-md d-flex align-items-center">
-                <div class="form-group py-md-4 py-2 px-4 px-md-0">
-                  <label for="message">Message</label>
-                  <textarea class="form-control" rows="2" name="message"
-                    id="message"
-                    placeholder="Your Message"></textarea>
+                <div class="form-group">
+                    <label for="message" class="block text-green-800 font-medium">বার্তা</label>
+                    <textarea class="form-control w-full border rounded-lg p-3" rows="2" name="message" id="message" placeholder="আপনার বার্তা"></textarea>
                 </div>
-              </div>
-              <div
-                class="col-12 col-md d-flex align-items-center align-items-stretch">
-                <div
-                  class="form-group py-md-4 py-2 px-4 px-md-0 d-flex align-items-stretch bg-primary">
-                  <input type="submit" value="Make an Appointment"
-                    class="btn btn-primary py-3 px-4"
-                    style="font-size: 0.9rem;">
+                <div class="form-group flex items-end">
+                    <input type="submit" value="অ্যাপয়েন্টমেন্ট করুন" class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">
                 </div>
-              </div>
-            </div>
-          </form>
+            </form>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<section class="ftco-section ftco-no-pt ftco-no-pb">
-  <div class="container">
-    <div class="row d-flex no-gutters">
-      <div class="col-md-6 d-flex">
-        <div
-          class="img d-flex align-items-center justify-content-center py-5 py-md-0"
-          style="background-image:url({{ about_info.image.url }});">
-          <div class="time-open-wrap">
-            <div class="desc p-4">
-              <h2>Business Hours</h2>
-              <div class="opening-hours">
-                <h4>Opening Days:</h4>
-                <p class="pl-3">
-                  <span><strong>Monday – Friday:</strong> {{ about_info.working_hours }}</span>
-                  <span><strong>Saturday :</strong> {{ about_info.saturday_hours }}</span>
-                </p>
-                <h4>Vacations:</h4>
-                <p class="pl-3">
-                  {% for day in about_info.vacation_days.splitlines %}
-                  <span>{{ day }}</span>
-                  {% endfor %}
-                </p>
-              </div>
-            </div>
-            <div class="desc p-4 bg-secondary">
-              <h3 class="heading">For Emergency Cases</h3>
-              <span class="phone">{{ emergency_contact.phone }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 pl-md-5 pt-md-5">
-        <div class="row justify-content-start py-5">
-          <div class="col-md-12 heading-section ftco-animate">
-            <span class="subheading">{{ about_info.welcome_subheading }}</span>
-            <h2 class="mb-4">{{ about_info.welcome_heading }}</h2>
-            <p>{{ about_info.description }}</p>
-          </div>
-        </div>
-        <div class="row ftco-counter py-5" id="section-counter">
-          <div
-            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number"
-                  data-number="{{ about_info.happy_customers }}">0</strong>
-              </div>
-              <div class="text">
-                <span>Happy <br>Customers</span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number"
-                  data-number="{{ about_info.service_deliver }}">0</strong>
-              </div>
-              <div class="text">
-                <span>Service <br>Delivered</span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number"
-                  data-number="{{ about_info.years_experience }}">0</strong>
-              </div>
-              <div class="text">
-                <span>Years of <br>Experienced</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ftco-section combined-service-section">
-  <div class="container">
-
-    <!-- Section Title -->
-    <div class="row justify-content-center pb-4 mb-4">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <span class="subheading">Our Services</span>
-        <h2 class="mb-4">Pest Control & Cleaning Services</h2>
-        <p class="lead text-muted">We provide top-notch pest control and
-          cleaning services to keep your environment safe
-          and sparkling.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- Left Column - Pest Control -->
-      <div class="col-md-6">
-        <h3 class="text-center text-success mb-4">🦟 Pest Control</h3>
-        <div class="row">
-          {% for service in services %}
-          {% if service.category == 'pest_control' %}
-          <div class="col-md-12 mb-4">
-            <div class="glass-card shadow ftco-animate">
-              <div class="service-image rounded-top">
-                {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}"
-                  class="img-fluid service-img rounded-top">
-                {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}"
-                  alt="Placeholder"
-                  class="img-fluid service-img rounded-top">
-                {% endif %}
-              </div>
-              <div class="service-content p-4">
-                <span class="badge bg-success mb-2">Pest Control</span>
-                <h4 class="heading mb-2">{{ service.name }}</h4>
-                <p class="text-muted">{{ service.description|truncatewords:20 }}</p>
-                <a href="#" class="btn-custom">Read More</a>
-              </div>
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-
-      <!-- Right Column - Cleaning -->
-      <div class="col-md-6">
-        <h3 class="text-center text-primary mb-4">🧼 Cleaning</h3>
-        <div class="row">
-          {% for service in services %}
-          {% if service.category == 'cleaning' %}
-          <div class="col-md-12 mb-4">
-            <div class="glass-card shadow ftco-animate">
-              <div class="service-image rounded-top">
-                {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}"
-                  class="img-fluid service-img rounded-top">
-                {% else %}
-                <img src="{% static 'images/placeholder-service.jpg' %}"
-                  alt="Placeholder"
-                  class="img-fluid service-img rounded-top">
-                {% endif %}
-              </div>
-              <div class="service-content p-4">
-                <span class="badge bg-primary mb-2">Cleaning</span>
-                <h4 class="heading mb-2">{{ service.name }}</h4>
-                <p class="text-muted">{{ service.description|truncatewords:20 }}</p>
-                <a href="#" class="btn-custom">Read More</a>
-              </div>
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ftco-section ftco-no-pt">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-lg-3 pr-md-4 pb-lg-0 pb-4">
-        <div class="heading-section ftco-animate text-center text-lg-left">
-          <span class="subheading">Team & Staff</span>
-          <h2>Our Team</h2>
-          <p>A small river named Duden flows by their place and supplies it with
-            the necessary regelialia. It is a
-            paradisematic country</p>
-          <p><a href="#" class="btn btn-secondary">View All Staff</a></p>
-        </div>
-      </div>
-
-      {% for staff in staff_list %}
-      <div class="col-md-4 col-lg-3 ftco-animate d-flex">
-        <div class="staff">
-          <div class="img-wrap d-flex align-items-stretch">
-            <div class="img align-self-stretch"
-              style="background-image: url('{{ staff.image.url }}');"></div>
-          </div>
-          <div class="text pt-3 px-3 pb-4 text-center">
-            <h3>{{ staff.name }}</h3>
-            <span class="position mb-2">{{ staff.position }}</span>
-            <div class="faded">
-              <ul class="ftco-social text-center">
-                {% if staff.twitter %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.twitter }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-twitter"></span></a>
-                </li>
-                {% endif %}
-                {% if staff.facebook %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.facebook }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-facebook"></span></a>
-                </li>
-                {% endif %}
-                {% if staff.google %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.google }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-google"></span></a>
-                </li>
-                {% endif %}
-                {% if staff.instagram %}
-                <li class="ftco-animate">
-                  <a href="{{ staff.instagram }}"
-                    class="d-flex align-items-center justify-content-center">
-                    <span class="fa fa-instagram"></span></a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="ftco-section testimony-section ftco-bg-dark">
-  <div class="container">
-    <div class="row justify-content-center pb-5 mb-3">
-      <div
-        class="col-md-7 heading-section heading-section-white text-center ftco-animate">
-        <span class="subheading">Testimonies</span>
-        <h2>Happy Customer</h2>
-      </div>
-    </div>
-    <div class="row ftco-animate">
-      <div class="col-md-12">
-        <div class="carousel-testimony owl-carousel ftco-owl">
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div
-                class="icon d-flex align-items-center justify-content-center"><span
-                  class="fa fa-quote-right"></span>
-              </div>
-              <div class="text">
-                <div class="d-flex align-items-center mb-4">
-                  <div class="user-img"
-                    style="background-image: url({% static 'images/person_2.jpg' %})"></div>
-                  <div class="pl-3">
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
+<!-- About Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <img src="{{ about_info.image.url }}" alt="About Image" class="w-full h-96 object-cover rounded-lg shadow-lg border-2 border-gold-500">
+                <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-6 rounded-b-lg font-noto-bengali">
+                    <h3 class="text-xl font-semibold mb-4 text-green-800">ব্যবসার সময়</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-medium">খোলার দিন:</h4>
+                            <p class="text-gray-600">
+                                <span class="block"><strong>সোমবার – শুক্রবার:</strong> {{ about_info.working_hours }}</span>
+                                <span class="block"><strong>শনিবার:</strong> {{ about_info.saturday_hours }}</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">ছুটির দিন:</h4>
+                            <p class="text-gray-600">
+                                {% for day in about_info.vacation_days.splitlines %}
+                                <span class="block">{{ day }}</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-green-100 rounded-lg">
+                        <h3 class="text-lg font-semibold text-green-800">জরুরী যোগাযোগ</h3>
+                        <p class="text-gray-600">{{ emergency_contact.phone }}</p>
+                    </div>
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far
-                  from the countries Vokalia and Consonantia,
-                  there live the blind texts.</p>
-              </div>
             </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div
-                class="icon d-flex align-items-center justify-content-center"><span
-                  class="fa fa-quote-right"></span>
-              </div>
-              <div class="text">
-                <div class="d-flex align-items-center mb-4">
-                  <div class="user-img"
-                    style="background-image: url({% static 'images/person_3.jpg' %})"></div>
-                  <div class="pl-3">
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
+            <div>
+                <span class="text-red-600 font-semibold font-noto-bengali">{{ about_info.welcome_subheading }}</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-green-800 font-noto-bengali">{{ about_info.welcome_heading }}</h2>
+                <p class="text-gray-600 mb-6 font-noto-bengali">{{ about_info.description }}</p>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.happy_customers }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali">সন্তুষ্ট গ্রাহক</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.service_deliver }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali">সেবা প্রদান</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.years_experience }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali">অভিজ্ঞতার বছর</p>
+                    </div>
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far
-                  from the countries Vokalia and Consonantia,
-                  there live the blind texts.</p>
-              </div>
             </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div
-                class="icon d-flex align-items-center justify-content-center"><span
-                  class="fa fa-quote-right"></span>
-              </div>
-              <div class="text">
-                <div class="d-flex align-items-center mb-4">
-                  <div class="user-img"
-                    style="background-image: url({% static 'images/person_1.jpg' %})"></div>
-                  <div class="pl-3">
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">আমাদের সেবা</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">পোকামাকড় নিয়ন্ত্রণ ও পরিচ্ছন্নতা সেবা</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
+                আমরা আপনার পরিবেশকে নিরাপদ ও ঝকঝকে রাখতে শীর্ষস্থানীয় পোকামাকড় নিয়ন্ত্রণ এবং পরিচ্ছন্নতা সেবা প্রদান করি।
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-center text-green-800 text-2xl font-semibold mb-4 font-noto-bengali">🦟 পোকামাকড় নিয়ন্ত্রণ</h3>
+                <div class="space-y-6">
+                    {% for service in services %}
+                    {% if service.category == 'pest_control' %}
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-red-600">
+                        <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">পোকামাকড় নিয়ন্ত্রণ</span>
+                            <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
+                            <p class="text-gray-600 font-noto-bengali">{{ service.description|truncatewords:20 }}</p>
+                            <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-2 inline-block">আরও পড়ুন</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far
-                  from the countries Vokalia and Consonantia,
-                  there live the blind texts.</p>
-              </div>
             </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div
-                class="icon d-flex align-items-center justify-content-center"><span
-                  class="fa fa-quote-right"></span>
-              </div>
-              <div class="text">
-                <div class="d-flex align-items-center mb-4">
-                  <div class="user-img"
-                    style="background-image: url({% static 'images/person_2.jpg' %})"></div>
-                  <div class="pl-3">
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
+            <div>
+                <h3 class="text-center text-green-800 text-2xl font-semibold mb-4 font-noto-bengali">🧼 পরিচ্ছন্নতা</h3>
+                <div class="space-y-6">
+                    {% for service in services %}
+                    {% if service.category == 'cleaning' %}
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-red-600">
+                        <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">পরিচ্ছন্নতা</span>
+                            <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
+                            <p class="text-gray-600 font-noto-bengali">{{ service.description|truncatewords:20 }}</p>
+                            <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-2 inline-block">আরও পড়ুন</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-                <p class="mb-1">Far far away, behind the word mountains, far
-                  from the countries Vokalia and Consonantia,
-                  there live the blind texts.</p>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<section class="ftco-section ftco-no-pb">
-  <div class="container">
-    <div class="row justify-content-center pb-5 mb-3">
-      <div class="col-md-12 heading-section text-center ftco-animate">
-        <span class="subheading">Our Project</span>
-        <h2>We have done many latest cleaning project</h2>
-      </div>
-    </div>
-    <div class="row">
-      {% for project in projects %}
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="work img d-flex align-items-center"
-          style="background-image: url('{{ project.image.url }}');">
-          <a href="{{ project.image.url }}"
-            class="icon image-popup d-flex justify-content-center align-items-center">
-            <span class="fa fa-expand"></span>
-          </a>
-          <div class="desc w-100 px-4 text-center pt-5 mt-5">
-            <div class="text w-100 mb-3 mt-4">
-              <h2><a href="#">{{ project.title }}</a></h2>
-            </div>
-          </div>
+<!-- Team Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">টিম এবং কর্মী</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমাদের টিম</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
+                আমাদের নিবেদিত টিম পেশাদারিত্ব এবং যত্নের সাথে ব্যতিক্রমী পরিচ্ছন্নতা সেবা প্রদানে প্রতিশ্রুতিবদ্ধ।
+            </p>
         </div>
-      </div>
-      {% endfor %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for staff in staff_list %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-t-4 border-red-600">
+                <div class="h-64 bg-cover bg-center" style="background-image: url('{{ staff.image.url }}');"></div>
+                <div class="p-6 text-center font-noto-bengali">
+                    <h3 class="text-xl font-semibold text-green-800">{{ staff.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ staff.position }}</p>
+                    <div class="flex justify-center space-x-4">
+                        {% if staff.twitter %}
+                        <a href="{{ staff.twitter }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                        {% if staff.facebook %}
+                        <a href="{{ staff.facebook }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        {% endif %}
+                        {% if staff.google %}
+                        <a href="{{ staff.google }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        {% endif %}
+                        {% if staff.instagram %}
+                        <a href="{{ staff.instagram }}" class="text-gray-600 hover:text-red-600">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-8">
+            <a href="#" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">সকল কর্মী দেখুন</a>
+        </div>
     </div>
-  </div>
 </section>
 
-<section class="video-section" style="padding: 0; margin: 0;">
-  <div class="container-fluid px-0">
-    {% if intro_section.video_file %}
-      <div class="video-container">
-        <video autoplay muted loop playsinline>
-          <source src="{{ intro_section.video_file.url }}" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    {% endif %}
-  </div>
+<!-- Testimonies Section -->
+<section class="py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">প্রশংসাপত্র</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 font-noto-bengali">সন্তুষ্ট গ্রাহক</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for testimony in testimonies %}
+            <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="flex justify-center mb-4">
+                    <span class="text-3xl text-red-600 fa fa-quote-right"></span>
+                </div>
+                <p class="text-gray-300 mb-4 font-noto-bengali">{{ testimony.text|truncatewords:30 }}</p>
+                <div class="flex items-center justify-center">
+                    <div class="w-12 h-12 bg-cover bg-center rounded-full" style="background-image: url('{% static 'images/person_'|add:forloop.counter|add:'.jpg' %}');"></div>
+                    <div class="ml-3 text-left">
+                        <p class="font-semibold font-noto-bengali">{{ testimony.name }}</p>
+                        <span class="text-gray-400">{{ testimony.position }}</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="flex justify-center mb-4">
+                    <span class="text-3xl text-red-600 fa fa-quote-right"></span>
+                </div>
+                <p class="text-gray-300 mb-4 font-noto-bengali">দূরে, পাহাড়ের পিছনে, ভোকালিয়া এবং কনসোনান্টিয়া দেশ থেকে দূরে, সেখানে অন্ধ পাঠ্য বাস করে।</p>
+                <div class="flex items-center justify-center">
+                    <div class="w-12 h-12 bg-cover bg-center rounded-full" style="background-image: url('{% static 'images/person_1.jpg' %}');"></div>
+                    <div class="ml-3 text-left">
+                        <p class="font-semibold font-noto-bengali">রজার স্কট</p>
+                        <span class="text-gray-400">মার্কেটিং ম্যানেজার</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 
-
-<section class="ftco-section bg-light">
-  <div class="container">
-    <div class="row justify-content-center pb-5 mb-3">
-      <div class="col-md-7 heading-section text-center ftco-animate">
-        <span class="subheading mb-3">Price & Plans</span>
-        <h2>Choose Your Perfect Plans</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7">
-          <div class="text-center">
-            <div
-              class="icon d-flex align-items-center justify-content-center"><span
-                class="fa flaticon-sprayer"></span>
+<!-- Projects Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">আমাদের প্রকল্প</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমরা অনেক সাম্প্রতিক পরিচ্ছন্নতা প্রকল্প সম্পন্ন করেছি</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for project in projects %}
+            <div class="relative group">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                <div class="absolute inset-0 bg-green-900/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <a href="{{ project.image.url }}" class="text-white text-2xl fa fa-expand"></a>
+                </div>
+                <div class="text-center mt-4">
+                    <h3 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ project.title }}</h3>
+                </div>
             </div>
-            <h4 class="heading-2">Starter</h4>
-            <span class="price"><sup>$</sup> <span
-                class="number">49</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
+            {% endfor %}
         </div>
-      </div>
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7 active">
-          <div class="text-center">
-            <div
-              class="icon d-flex align-items-center justify-content-center"><span
-                class="fa flaticon-vacuum-cleaner"></span></div>
-            <h4 class="heading-2">Standard</h4>
-            <span class="price"><sup>$</sup> <span
-                class="number">79</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7">
-          <div class="text-center">
-            <div
-              class="icon d-flex align-items-center justify-content-center"><span
-                class="fa flaticon-tap"></span>
-            </div>
-            <h4 class="heading-2">Premium</h4>
-            <span class="price"><sup>$</sup> <span
-                class="number">109</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 ftco-animate">
-        <div class="block-7">
-          <div class="text-center">
-            <div
-              class="icon d-flex align-items-center justify-content-center"><span
-                class="fa flaticon-cleaning"></span></div>
-            <h4 class="heading-2">Platinum</h4>
-            <span class="price"><sup>$</sup> <span
-                class="number">159</span></span>
-            <ul class="pricing-text mb-5">
-              <li><span class="fa fa-check mr-2"></span>Bedrooms cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Vacuuming</li>
-              <li><span class="fa fa-check mr-2"></span>Bathroom cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Mirrow cleaning</li>
-              <li><span class="fa fa-check mr-2"></span>Livingroom cleaning</li>
-            </ul>
-            <a href="#" class="btn btn-primary px-4 py-3">Get Started</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
+
+<!-- Video Section -->
+<section class="py-16 bg-gray-100">
+    <div class="container-fluid px-0">
+        {% if intro_section.video_file %}
+        <div class="relative w-full h-96 md:h-[36rem]">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="{{ intro_section.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-red-600 font-semibold font-noto-bengali">মূল্য এবং পরিকল্পনা</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আপনার নিখুঁত পরিকল্পনা নির্বাচন করুন</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                <span class="text-3xl text-green-800 fa flaticon-sprayer mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">স্টার্টার</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>49</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600 transform scale-105">
+                <span class="text-3xl text-green-800 fa flaticon-vacuum-cleaner mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">স্ট্যান্ডার্ড</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>79</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                <span class="text-3xl text-green-800 fa flaticon-tap mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">প্রিমিয়াম</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>109</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
+                <span class="text-3xl text-green-800 fa flaticon-cleaning mb-4 block"></span>
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">প্লাটিনাম</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>159</span>
+                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
+                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
+                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
+                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                </ul>
+                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Include Tailwind CSS, Font Awesome, and Noto Serif Bengali -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    .font-noto-bengali {
+        font-family: 'Noto Serif Bengali', serif;
+    }
+</style>
+
+<!-- Counter Animation Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.text-3xl[data-number]');
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-number');
+            const count = +counter.innerText;
+            const increment = target / 100;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+});
+</script>
 {% endblock %}
