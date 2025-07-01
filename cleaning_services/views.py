@@ -69,17 +69,52 @@ def about_view(request):
     return render(request, 'about.html', context)
 
 def services_view(request):
+    contact = EmergencyContact.objects.last()
+    about_info = AboutInfo.objects.first()
+    emergency_contact = EmergencyContact.objects.first()
     services = Service.objects.all()
+    staff_list = Staff.objects.all()
     pest_services = Service.objects.filter(category='pest_control').order_by('created_at')
     cleaning_services = Service.objects.filter(category='cleaning').order_by('created_at')
+    testimonials = Testimonial.objects.all().order_by('-created_at')[:5]
+    intro_section = IntroSection.objects.first()
+
     context = {
+        'contact': contact,
+        'about_info': about_info,
+        'emergency_contact': emergency_contact,
         'services': services,
+        'staff_list': staff_list,
         'pest_services': pest_services,
         'cleaning_services': cleaning_services,
+        'testimonials': testimonials,
+        'intro_section': intro_section,
     }
 
     return render(request, 'services.html', context)
 
 def contact_view(request):
-    return render(request, 'contact.html')
+    contact = EmergencyContact.objects.last()
+    about_info = AboutInfo.objects.first()
+    emergency_contact = EmergencyContact.objects.first()
+    services = Service.objects.all()
+    staff_list = Staff.objects.all()
+    pest_services = Service.objects.filter(category='pest_control').order_by('created_at')
+    cleaning_services = Service.objects.filter(category='cleaning').order_by('created_at')
+    testimonials = Testimonial.objects.all().order_by('-created_at')[:5]
+    intro_section = IntroSection.objects.first()
+
+    context = {
+        'contact': contact,
+        'about_info': about_info,
+        'emergency_contact': emergency_contact,
+        'services': services,
+        'staff_list': staff_list,
+        'pest_services': pest_services,
+        'cleaning_services': cleaning_services,
+        'testimonials': testimonials,
+        'intro_section': intro_section,
+    }
+
+    return render(request, 'contact.html', context)
 

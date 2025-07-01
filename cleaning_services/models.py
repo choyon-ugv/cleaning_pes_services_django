@@ -11,8 +11,8 @@ class HeroSection(models.Model):
 
 class Service(models.Model):
     CATEGORY_CHOICES = [
-        ('pest_control', 'Pest Control'),
-        ('cleaning', 'Cleaning'),
+        ('Pest Control', 'Pest Control'),
+        ('Cleaning', 'Cleaning'),
     ]
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)

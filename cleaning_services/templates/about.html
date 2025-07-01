@@ -1,131 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}আমাদের সম্পর্কে - ক্লিনিং কোম্পানি{% endblock %}
+{% block title %}আমাদের সম্পর্কে - ক্লিনিং ও পেস্ট কন্ট্রোল{% endblock %}
 
-{% block content %}
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-green-800 to-red-800 text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <img src="{% static 'images/bangla-pattern.png' %}" alt="Bangla Pattern" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-red-900/80"></div>
-    </div>
-    <div class="container mx-auto px-4 py-24 md:py-32 relative">
-        <div class="max-w-2xl">
-            <nav class="text-sm mb-4 font-noto-bengali">
-                <a href="/" class="hover:underline">হোম</a> 
-                <span class="mx-2">/</span> 
-                <span>আমাদের সম্পর্কে</span>
-            </nav>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fade-in font-noto-bengali">আমাদের সম্পর্কে</h1>
-        </div>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="relative">
-                <img src="{{ about_info.image.url }}" alt="About Image" class="w-full h-96 object-cover rounded-lg shadow-lg border-2 border-gold-500">
-                <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-6 rounded-b-lg font-noto-bengali">
-                    <h3 class="text-xl font-semibold mb-4 text-green-800">ব্যবসার সময়</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium">খোলার দিন:</h4>
-                            <p class="text-gray-600">
-                                <span class="block"><strong>সোমবার – শুক্রবার:</strong> {{ about_info.working_hours }}</span>
-                                <span class="block"><strong>শনিবার:</strong> {{ about_info.saturday_hours }}</span>
-                            </p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium">ছুটির দিন:</h4>
-                            <p class="text-gray-600">
-                                {% for day in about_info.vacation_days.splitlines %}
-                                <span class="block">{{ day }}</span>
-                                {% endfor %}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-4 p-4 bg-green-100 rounded-lg">
-                        <h3 class="text-lg font-semibold text-green-800">জরুরী যোগাযোগ</h3>
-                        <p class="text-gray-600">{{ emergency_contact.phone }}</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <span class="text-red-600 font-semibold font-noto-bengali">{{ about_info.welcome_subheading }}</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-green-800 font-noto-bengali">{{ about_info.welcome_heading }}</h2>
-                <p class="text-gray-600 mb-6 font-noto-bengali">{{ about_info.description }}</p>
-                <div class="grid grid-cols-3 gap-4 text-center">
-                    <div class="p-4 bg-green-50 rounded-lg">
-                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.happy_customers }}">0</h3>
-                        <p class="text-gray-600 font-noto-bengali">সন্তুষ্ট গ্রাহক</p>
-                    </div>
-                    <div class="p-4 bg-green-50 rounded-lg">
-                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.service_deliver }}">0</h3>
-                        <p class="text-gray-600 font-noto-bengali">সেবা প্রদান</p>
-                    </div>
-                    <div class="p-4 bg-green-50 rounded-lg">
-                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.years_experience }}">0</h3>
-                        <p class="text-gray-600 font-noto-bengali">অভিজ্ঞতার বছর</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Team Section -->
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <span class="text-red-600 font-semibold font-noto-bengali">টিম এবং কর্মী</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমাদের টিমের সাথে পরিচিত হন</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
-                আমাদের নিবেদিত টিম পেশাদারিত্ব এবং যত্নের সাথে ব্যতিক্রমী পরিচ্ছন্নতা সেবা প্রদানে প্রতিশ্রুতিবদ্ধ।
-            </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {% for staff in staff_list %}
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-t-4 border-red-600">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('{{ staff.image.url }}');"></div>
-                <div class="p-6 text-center font-noto-bengali">
-                    <h3 class="text-xl font-semibold text-green-800">{{ staff.name }}</h3>
-                    <p class="text-gray-600 mb-4">{{ staff.position }}</p>
-                    <div class="flex justify-center space-x-4">
-                        {% if staff.twitter %}
-                        <a href="{{ staff.twitter }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        {% endif %}
-                        {% if staff.facebook %}
-                        <a href="{{ staff.facebook }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        {% endif %}
-                        {% if staff.google %}
-                        <a href="{{ staff.google }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        {% endif %}
-                        {% if staff.instagram %}
-                        <a href="{{ staff.instagram }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="text-center mt-8">
-            <a href="#" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">সকল কর্মী দেখুন</a>
-        </div>
-    </div>
-</section>
-
-<!-- Include Tailwind CSS, Font Awesome, and Noto Serif Bengali -->
+{% block extra_head %}
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
@@ -134,12 +12,153 @@
     .font-noto-bengali {
         font-family: 'Noto Serif Bengali', serif;
     }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeIn 1s ease-out; }
+    .animate-slide-in-down { animation: slideInDown 0.8s ease-out; }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
 </style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-b from-green-800 to-red-800 text-white min-h-[70vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-[url('{% static 'images/bangla-pattern.png' %}')] bg-cover bg-center opacity-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-green-900/70 to-red-900/70"></div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto text-center py-12">
+            <nav class="text-sm mb-6 font-noto-bengali text-yellow-200 animate-fade-in flex justify-center items-center">
+                <a href="{% url 'home' %}" class="hover:underline">হোম</a> 
+                <span class="mx-2">/</span> 
+                <span>আমাদের সম্পর্কে</span>
+            </nav>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 font-noto-bengali animate-slide-in-down">আমাদের গল্প</h1>
+            <p class="text-base sm:text-lg lg:text-xl text-gray-100 font-noto-bengali max-w-3xl mx-auto leading-relaxed">আমরা আপনার পরিবেশকে পরিষ্কার, নিরাপদ ও পোকামাকড় মুক্ত রাখতে প্রতিশ্রুতিবদ্ধ। আমাদের সেবার মাধ্যমে আপনার জীবনযাত্রার মান উন্নত করুন।</p>
+            <a href="{% url 'contact' %}" class="mt-8 inline-block bg-yellow-400 text-green-900 px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-yellow-500 transition-all duration-300 font-noto-bengali shadow-lg flex items-center justify-center mx-auto text-sm sm:text-base">
+                <i class="fas fa-headset mr-2"></i> যোগাযোগ করুন
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Sticky CTA (Mobile) -->
+<div class="fixed bottom-4 right-4 z-50 md:hidden">
+    <a href="{% url 'contact' %}" class="bg-red-600 text-white px-5 py-2.5 rounded-full shadow-lg flex items-center font-noto-bengali hover:bg-red-700 transition-all duration-300 text-sm">
+        <i class="fas fa-phone-alt mr-2 rotate-90"></i> কল করুন
+    </a>
+</div>
+
+<!-- About Section -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div class="order-2 lg:order-1">
+                <img src="{{ about_info.image.url|default:'{% static \"images/about.jpg\" %}' }}" alt="About Image" class="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl border-2 border-yellow-300 transform hover:scale-[1.02] transition-all duration-500">
+                <div class="mt-6 bg-white rounded-2xl shadow-lg p-6 font-noto-bengali">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-green-800 mb-4">আমাদের কার্যক্রম</h3>
+                    <div class="space-y-4 text-gray-700 text-sm sm:text-base">
+                        <div>
+                            <h4 class="font-medium text-green-800">খোলার সময়:</h4>
+                            <p>
+                                <span class="block"><strong>সোমবার – শুক্রবার:</strong> {{ about_info.working_hours|default:"৮:০০ - ১৮:০০" }}</span>
+                                <span class="block"><strong>শনিবার:</strong> {{ about_info.saturday_hours|default:"৯:০০ - ১৪:০০" }}</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-green-800">ছুটির দিন:</h4>
+                            <p>
+                                {% for day in about_info_vacation_days.splitlines %}
+                                <span class="block">{{ day }}</span>
+                                {% empty %}
+                                <span class="block">রবিবার</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="p-4 bg-yellow-50 rounded-lg">
+                            <h3 class="text-lg font-semibold text-green-800">জরুরী যোগাযোগ</h3>
+                            <p>{{ emergency_contact.phone|default:"+৮৮০ ১২৩৪ ৫৬৭৮৯০" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <span class="text-red-600 font-semibold font-noto-bengali animate-fade-in-up text-sm sm:text-base">{{ about_info.welcome_subheading|default:"আমাদের লক্ষ্য" }}</span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mt-2 mb-6 text-green-800 font-noto-bengali">{{ about_info.welcome_heading|default:"পরিচ্ছন্নতায় আমাদের প্রতিশ্রুতি" }}</h2>
+                <p class="text-gray-600 mb-6 font-noto-bengali leading-relaxed text-base sm:text-lg">{{ about_info.description|default:"আমরা শীর্ষস্থানীয় পোকামাকড় নিয়ন্ত্রণ ও পরিচ্ছন্নতা সেবা প্রদান করি, যাতে আপনার বাড়ি ও ব্যবসা প্রতিষ্ঠান নিরাপদ ও পরিষ্কার থাকে।" }}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                    <div class="p-4 bg-yellow-50 rounded-xl shadow-md transform hover:scale-[1.02] transition-all duration-300">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-red-600" data-number="{{ about_info.happy_customers|default:'1500' }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali mt-2 text-sm sm:text-base">সন্তুষ্ট গ্রাহক</p>
+                    </div>
+                    <div class="p-4 bg-yellow-50 rounded-xl shadow-md transform hover:scale-[1.02] transition-all duration-300">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-red-600" data-number="{{ about_info.service_deliver|default:'7500' }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali mt-2 text-sm sm:text-base">সেবা প্রদান</p>
+                    </div>
+                    <div class="p-4 bg-yellow-50 rounded-xl shadow-md transform hover:scale-[1.02] transition-all duration-300">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-red-600" data-number="{{ about_info.years_experience|default:'12' }}">0</h3>
+                        <p class="text-gray-600 font-noto-bengali mt-2 text-sm sm:text-base">অভিজ্ঞতার বছর</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <span class="text-red-600 font-semibold font-noto-bengali animate-fade-in text-sm sm:text-base">আমাদের টিম</span>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমাদের নিবেদিত পেশাদার দল</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto mt-4 font-noto-bengali text-base sm:text-lg">আমাদের দক্ষ টিম পেশাদারিত্ব এবং যত্নের সাথে আপনার পরিবেশকে পরিষ্কার ও নিরাপদ রাখতে প্রতিশ্রুতিবদ্ধ।</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {% for staff in staff_list %}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-red-600 transform hover:scale-[1.02] transition-all duration-300">
+                <div class="h-56 sm:h-64 lg:h-72 bg-cover bg-center" style="background-image: url('{{ staff.image.url|default:'{% static \"images/placeholder-staff.jpg\" %}' }}');"></div>
+                <div class="p-4 sm:p-6 text-center font-noto-bengali">
+                    <h3 class="text-lg sm:text-xl font-semibold text-green-800">{{ staff.name|default:"টিম সদস্য" }}</h3>
+                    <p class="text-gray-600 mb-4 text-sm sm:text-base">{{ staff.position|default:"পেশাদার" }}</p>
+                    <div class="flex justify-center gap-3 sm:gap-4">
+                        {% if staff.twitter %}
+                        <a href="{{ staff.twitter }}" class="text-gray-600 hover:text-red-600 transition-colors"><i class="fab fa-twitter text-base sm:text-lg"></i></a>
+                        {% endif %}
+                        {% if staff.facebook %}
+                        <a href="{{ staff.facebook }}" class="text-gray-600 hover:text-red-600 transition-colors"><i class="fab fa-facebook text-base sm:text-lg"></i></a>
+                        {% endif %}
+                        {% if staff.google %}
+                        <a href="{{ staff.google }}" class="text-gray-600 hover:text-red-600 transition-colors"><i class="fab fa-google text-base sm:text-lg"></i></a>
+                        {% endif %}
+                        {% if staff.instagram %}
+                        <a href="{{ staff.instagram }}" class="text-gray-600 hover:text-red-600 transition-colors"><i class="fab fa-instagram text-base sm:text-lg"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="col-span-full text-center text-gray-600 font-noto-bengali">কোনো টিম সদস্য পাওয়া যায়নি।</p>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-8">
+            <a href="#" class="inline-block bg-yellow-400 text-green-900 px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-yellow-500 transition-all duration-300 font-noto-bengali shadow-lg text-sm sm:text-base">সকল সদস্য দেখুন</a>
+        </div>
+    </div>
+</section>
 
 <!-- Counter Animation Script -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.text-3xl[data-number]');
+    const counters = document.querySelectorAll('.text-2xl[data-number], .text-3xl[data-number]');
     counters.forEach(counter => {
         const updateCount = () => {
             const target = +counter.getAttribute('data-number');
@@ -152,8 +171,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 counter.innerText = target;
             }
         };
-        updateCount();
-    });
-});
+        const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCount();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+        });
 </script>
 {% endblock %}

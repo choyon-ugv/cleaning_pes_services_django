@@ -34,11 +34,13 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color: #FFD700; /* Gold for hover */
+            color: #FFD700;
+            /* Gold for hover */
         }
 
         .btn-call-now {
-            background-color: #28A745; /* Green */
+            background-color: #28A745;
+            /* Green */
             color: white;
             font-size: 1rem;
             border-radius: 5px;
@@ -51,7 +53,8 @@
         }
 
         .btn-order-now {
-            background-color: #DC3545; /* Red */
+            background-color: #DC3545;
+            /* Red */
             color: white;
             font-size: 1rem;
             border-radius: 5px;
@@ -64,7 +67,8 @@
         }
 
         .btn-custom {
-            background-color: #FFD700; /* Gold */
+            background-color: #FFD700;
+            /* Gold */
             color: #1A3C34;
             padding: 8px 16px;
             border-radius: 4px;
@@ -104,19 +108,22 @@
         }
 
         .badge.bg-primary {
-            background-color: #28A745 !important; /* Green */
+            background-color: #28A745 !important;
+            /* Green */
             color: #ffffff !important;
         }
 
         .badge.bg-success {
-            background-color: #DC3545 !important; /* Red */
+            background-color: #DC3545 !important;
+            /* Red */
             color: #ffffff !important;
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 ratio */
+            padding-bottom: 56.25%;
+            /* 16:9 ratio */
             overflow: hidden;
         }
 
@@ -131,20 +138,23 @@
         }
 
         .footer {
-            background-color: #1A3C34; /* Dark Green */
+            background-color: #1A3C34;
+            /* Dark Green */
             color: #ffffff;
             padding: 3rem 0;
         }
 
         .footer-heading {
-            color: #FFD700; /* Gold */
+            color: #FFD700;
+            /* Gold */
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
         }
 
         .ftco-footer-social li a {
             color: #ffffff;
-            background-color: #DC3545; /* Red */
+            background-color: #DC3545;
+            /* Red */
             width: 40px;
             height: 40px;
             display: flex;
@@ -155,7 +165,8 @@
         }
 
         .ftco-footer-social li a:hover {
-            background-color: #FFD700; /* Gold */
+            background-color: #FFD700;
+            /* Gold */
             color: #1A3C34;
         }
 
@@ -171,6 +182,132 @@
         .copyright a:hover {
             color: #D4AF37;
         }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #FFD700;
+            /* Gold for hover and active */
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                background-color: #DC3545;
+                padding: 1rem;
+                border-radius: 0 0 8px 8px;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+        }
+
+        /* Floating WhatsApp and Messenger Buttons */
+        .floating-whatsapp, .floating-messenger {
+            position: fixed;
+            bottom: 20px;
+            z-index: 9999;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 0 0 6px rgba(37,211,102,0.08);
+            cursor: pointer;
+            animation: bounceIn 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .floating-whatsapp {
+            left: 20px;
+            background: #25D366;
+            animation-delay: 0.2s;
+        }
+        .floating-messenger {
+            right: 20px;
+            background: #0084FF;
+            animation-delay: 0.4s;
+        }
+        .floating-whatsapp:hover {
+            background: #128C7E;
+            transform: scale(1.12) rotate(-8deg);
+            box-shadow: 0 12px 32px rgba(37,211,102,0.25), 0 0 0 10px rgba(37,211,102,0.12);
+        }
+        .floating-messenger:hover {
+            background: #0056b3;
+            transform: scale(1.12) rotate(8deg);
+            box-shadow: 0 12px 32px rgba(0,132,255,0.25), 0 0 0 10px rgba(0,132,255,0.12);
+        }
+        .floating-whatsapp::after, .floating-messenger::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #222;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .floating-whatsapp:hover::after, .floating-messenger:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        .floating-whatsapp .pulse, .floating-messenger .pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            top: 0; left: 0;
+            background: inherit;
+            opacity: 0.4;
+            z-index: -1;
+            animation: pulse 1.5s infinite;
+        }
+        .floating-messenger .pulse {
+            background: #0084FF;
+            opacity: 0.3;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            70% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.5) translateY(100px); opacity: 0; }
+            60% { transform: scale(1.1) translateY(-10px); opacity: 1; }
+            80% { transform: scale(0.95) translateY(5px); }
+            100% { transform: scale(1) translateY(0); }
+        }
+        @media (max-width: 600px) {
+            .floating-whatsapp, .floating-messenger {
+                width: 44px;
+                height: 44px;
+                font-size: 1.4rem;
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+            }
+            .floating-whatsapp { left: 12px; }
+            .floating-messenger { right: 12px; }
+        }
     </style>
 
     {% block extra_css %}
@@ -184,12 +321,12 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-2 md:mb-0 font-noto-bengali">
                     {% if contact.phone %}
-                    <span>ফোন নম্বর:</span> 
+                    <span>ফোন নম্বর:</span>
                     <a href="tel:{{ contact.phone }}" class="hover:underline">{{ contact.phone }}</a>
                     {% endif %}
                     {% if contact.email %}
                     <span class="mx-2">|</span>
-                    <span>ইমেইল:</span> 
+                    <span>ইমেইল:</span>
                     <a href="mailto:{{ contact.email }}" class="hover:underline">{{ contact.email }}</a>
                     {% endif %}
                 </div>
@@ -211,30 +348,23 @@
 
     <!-- Navbar -->
     <nav class="bg-red-600 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-4">
+        <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="{% static 'images/101.webp' %}" alt="লোগো" class="h-16">
+                    <img src="{% static 'images/101.webp' %}" alt="লোগো" class="h-16 md:h-14">
                 </a>
-                <button class="md:hidden text-white focus:outline-none" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i> <span class="font-noto-bengali">মেনু</span>
+                <button class="md:hidden text-white focus:outline-none navbar-toggler" type="button"
+                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars text-2xl"></i>
                 </button>
-                <div class="hidden md:flex md:items-center" id="ftco-nav">
-                    <ul class="flex space-x-6 font-noto-bengali">
+                <div class="hidden md:flex md:items-center navbar-nav" id="ftco-nav">
+                    <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 font-noto-bengali">
                         <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">হোম</a></li>
                         <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">আমাদের সম্পর্কে</a></li>
                         <li class="nav-item"><a href="{% url 'services' %}" class="nav-link">সেবা</a></li>
                         <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">যোগাযোগ</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="md  hidden collapse" id="ftco-nav">
-                <ul class="flex flex-col space-y-2 mt-4 font-noto-bengali">
-                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">হোম</a></li>
-                    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">আমাদের সম্পর্কে</a></li>
-                    <li class="nav-item"><a href="{% url 'services' %}" class="nav-link">সেবা</a></li>
-                    <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">যোগাযোগ</a></li>
-                </ul>
             </div>
         </div>
     </nav>
@@ -247,10 +377,12 @@
     <footer class="footer bg-green-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Branding -->
                 <div>
                     <h2 class="footer-heading text-2xl font-bold font-noto-bengali">ক্লিনিং কোম্পানি</h2>
                     <p class="text-gray-300 font-noto-bengali">
-                        আমরা একটি নিবেদিত দল যারা আপনার পরিবেশকে পরিষ্কার ও নিরাপদ রাখতে প্রতিশ্রুতিবদ্ধ। আমাদের সেবা আপনার জীবনকে আরও সুন্দর করে তুলবে।
+                        আমরা একটি নিবেদিত দল যারা আপনার পরিবেশকে পরিষ্কার ও নিরাপদ রাখতে প্রতিশ্রুতিবদ্ধ। আমাদের সেবা
+                        আপনার জীবনকে আরও সুন্দর করে তুলবে।
                     </p>
                     <ul class="flex space-x-4 mt-4 ftco-footer-social">
                         <li><a href="#" class="ftco-animate"><i class="fab fa-twitter"></i></a></li>
@@ -258,21 +390,46 @@
                         <li><a href="#" class="ftco-animate"><i class="fab fa-instagram"></i></a></li>
                     </ul>
                 </div>
+
+                <!-- Quick Links -->
                 <div>
                     <h2 class="footer-heading text-2xl font-bold font-noto-bengali">দ্রুত লিঙ্ক</h2>
                     <ul class="list-unstyled space-y-2 font-noto-bengali">
-                        <li><a href="{% url 'home' %}" class="text-gray-300 hover:text-gold-400">হোম</a></li>
-                        <li><a href="{% url 'about' %}" class="text-gray-300 hover:text-gold-400">আমাদের সম্পর্কে</a></li>
-                        <li><a href="{% url 'services' %}" class="text-gray-300 hover:text-gold-400">সেবা</a></li>
-                        <li><a href="{% url 'contact' %}" class="text-gray-300 hover:text-gold-400">যোগাযোগ</a></li>
+                        <li>
+                            <a href="{% url 'home' %}"
+                                class="text-gray-300 hover:text-gold-400 {% if request.path == '/' %}text-gold-400 font-semibold{% endif %}">
+                                হোম
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}"
+                                class="text-gray-300 hover:text-gold-400 {% if request.path == '/about/' %}text-gold-400 font-semibold{% endif %}">
+                                আমাদের সম্পর্কে
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'services' %}"
+                                class="text-gray-300 hover:text-gold-400 {% if request.path == '/services/' %}text-gold-400 font-semibold{% endif %}">
+                                সেবা
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}"
+                                class="text-gray-300 hover:text-gold-400 {% if request.path == '/contact/' %}text-gold-400 font-semibold{% endif %}">
+                                যোগাযোগ
+                            </a>
+                        </li>
                     </ul>
                 </div>
+
+                <!-- Contact Info -->
                 <div>
                     <h2 class="footer-heading text-2xl font-bold font-noto-bengali">প্রশ্ন আছে?</h2>
                     <ul class="space-y-4 font-noto-bengali">
                         <li class="flex items-start">
                             <span class="text-gold-400 fa fa-map-marker mr-2 mt-1"></span>
-                            <span class="text-gray-300">২০৩ ফেক স্ট্রিট, মাউন্টেন ভিউ, সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া, মার্কিন যুক্তরাষ্ট্র</span>
+                            <span class="text-gray-300">২০৩ ফেক স্ট্রিট, মাউন্টেন ভিউ, সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া,
+                                মার্কিন যুক্তরাষ্ট্র</span>
                         </li>
                         <li>
                             <a href="#" class="flex items-start text-gray-300 hover:text-gold-400">
@@ -289,22 +446,39 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Copyright -->
             <div class="mt-8 text-center">
                 <p class="copyright font-noto-bengali">
-                    কপিরাইট © <script>document.write(new Date().getFullYear());</script> সর্বস্বত্ব সংরক্ষিত <i class="fa fa-heart text-red-600" aria-hidden="true"></i> দ্বারা 
-                    <a href="https://eaglepestcontrolbd.com/" target="_blank" class="text-gold-400 hover:text-gold-500">EaglePestControlbd.com</a>
+                    কপিরাইট ©
+                    <script>document.write(new Date().getFullYear());</script> সর্বস্বত্ব সংরক্ষিত <i
+                        class="fa fa-heart text-red-600" aria-hidden="true"></i> দ্বারা
+                    <a href="https://eaglepestcontrolbd.com/" target="_blank"
+                        class="text-gold-400 hover:text-gold-500">EaglePestControlbd.com</a>
                 </p>
             </div>
         </div>
     </footer>
 
+
     <!-- Loader -->
     <div id="ftco-loader" class="fixed inset-0 flex items-center justify-center bg-white z-50 hidden">
         <svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#DC3545" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#FFD700" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#FFD700" />
         </svg>
     </div>
+
+    <!-- Floating WhatsApp and Messenger Buttons -->
+    <a href="https://wa.me/your_number_here" class="floating-whatsapp" target="_blank" aria-label="WhatsApp" data-tooltip="Chat on WhatsApp">
+        <span class="pulse"></span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://m.me/your_page_here" class="floating-messenger" target="_blank" aria-label="Messenger" data-tooltip="Message on Messenger">
+        <span class="pulse"></span>
+        <i class="fab fa-facebook-messenger"></i>
+    </a>
 
     <!-- Scripts -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -322,6 +496,30 @@
     </script>
 
     {% block extra_js %}
+    <!-- JavaScript for Navbar Toggle and Active State -->
+    <script>
+        // Navbar toggle for mobile
+        document.querySelector('.navbar-toggler').addEventListener('click', () => {
+            const nav = document.querySelector('#ftco-nav');
+            nav.classList.toggle('hidden');
+        });
+
+        // Set active class based on current URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentPath = window.location.pathname;
+
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href).pathname;
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
     {% endblock %}
 </body>
+
 </html>

@@ -1,127 +1,111 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}হোম - ক্লিনিং কোম্পানি{% endblock %}
+{% block title %}হোম - ক্লিনিং ও পেস্ট কন্ট্রোল{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-green-800 to-red-800 text-white overflow-hidden h-screen flex items-center">
-    <div class="absolute inset-0 opacity-10">
-        <img src="{% static 'images/bangla-pattern.png' %}" alt="Bangla Pattern" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-red-900/80"></div>
-    </div>
-    <div class="container mx-auto px-4 relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-                <h2 class="text-2xl font-semibold text-gold-400 font-noto-bengali">{{ hero_section.subheading }}</h2>
-                <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-6 font-noto-bengali">{{ hero_section.main_heading }}</h1>
-                <div class="flex space-x-4">
+<section class="relative bg-gradient-to-b from-green-800 to-green-600 text-white min-h-screen flex items-center">
+    <div class="absolute inset-0 bg-[url('{% static 'images/bangla-pattern.png' %}')] bg-cover bg-center opacity-10"></div>
+    <div class="container mx-auto px-4 md:px-8 lg:px-16 relative z-10">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-2xl md:text-3xl font-semibold text-yellow-300 font-noto-bengali animate-slide-in-left">{{ hero_section.subheading }}</h2>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 font-noto-bengali leading-tight">{{ hero_section.main_heading }}</h1>
+                <p class="text-lg text-gray-100 mb-8 font-noto-bengali max-w-lg mx-auto md:mx-0">আপনার বাড়ি ও অফিসকে পরিষ্কার ও পোকামাকড় মুক্ত রাখুন আমাদের বিশেষজ্ঞ সেবার মাধ্যমে।</p>
+                <div class="flex justify-center md:justify-start gap-4">
                     {% if contact.phone %}
-                    <a href="tel:{{ contact.phone }}" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition flex items-center font-noto-bengali">
-                        <i class="fas fa-phone-alt mr-2" style="transform: rotate(90deg);"></i> এখন কল করুন
+                    <a href="tel:{{ contact.phone }}" class="bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition-all duration-300 font-noto-bengali shadow-lg flex items-center">
+                        <i class="fas fa-phone-alt mr-2 rotate-90"></i> কল করুন
                     </a>
                     {% endif %}
-                    <a href="/contact/" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition flex items-center font-noto-bengali">
-                        <i class="fas fa-shopping-cart mr-2"></i> এখন অর্ডার করুন
+                    <a href="/contact/" class="bg-yellow-400 text-green-900 px-6 py-3 rounded-full hover:bg-yellow-500 transition-all duration-300 font-noto-bengali shadow-lg flex items-center">
+                        <i class="fas fa-shopping-cart mr-2"></i> অর্ডার করুন
                     </a>
                 </div>
             </div>
-            <div>
-                <img src="{{ hero_section.image.url }}" alt="Cleaning Service" class="w-full rounded-lg shadow-lg">
+            <div class="md:w-1/2">
+                <img src="{{ hero_section.image.url }}" alt="Cleaning Service" class="w-full rounded-lg shadow-2xl animate-slide-in-right">
             </div>
         </div>
     </div>
 </section>
 
+<!-- Sticky CTA (Mobile) -->
+<div class="fixed bottom-6 right-6 z-50 md:hidden">
+    <a href="/contact/" class="bg-yellow-400 text-green-900 px-5 py-3 rounded-full shadow-lg flex items-center font-noto-bengali hover:bg-yellow-500 transition-all duration-300">
+        <i class="fas fa-headset mr-2"></i> সেবা বুক করুন
+    </a>
+</div>
+
 <!-- Appointment Section -->
-<section class="py-16 bg-gray-100 relative">
-    <div class="container mx-auto px-4">
-        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <form action="#" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 font-noto-bengali">
-                <div class="form-group">
-                    <label for="name" class="block text-green-800 font-medium">নাম</label>
-                    <input type="text" class="form-control w-full border rounded-lg p-3" name="name" id="name" placeholder="আপনার নাম">
+<section class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-green-800 text-center mb-6 font-noto-bengali">অ্যাপয়েন্টমেন্ট বুক করুন</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-noto-bengali">
+                <div>
+                    <label for="name" class="block text-green-800 font-medium mb-2">নাম</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent" name="name" id="name" placeholder="আপনার নাম">
                 </div>
-                <div class="form-group">
-                    <label for="phone" class="block text-green-800 font-medium">ফোন নম্বর</label>
-                    <input type="text" class="form-control w-full border rounded-lg p-3" name="phone" id="phone" placeholder="ফোন নম্বর">
+                <div>
+                    <label for="phone" class="block text-green-800 font-medium mb-2">ফোন নম্বর</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent" name="phone" id="phone" placeholder="ফোন নম্বর">
                 </div>
-                <div class="form-group">
-                    <label for="address" class="block text-green-800 font-medium">ঠিকানা</label>
-                    <input type="text" class="form-control w-full border rounded-lg p-3" name="address" id="address" placeholder="আপনার ঠিকানা">
+                <div>
+                    <label for="address" class="block text-green-800 font-medium mb-2">ঠিকানা</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 focus:border-transparent" name="address" id="address" placeholder="আপনার ঠিকানা">
                 </div>
-                <div class="form-group">
-                    <label for="service" class="block text-green-800 font-medium">সেবা নির্বাচন করুন</label>
+                <div>
+                    <label for="service" class="block text-green-800 font-medium mb-2">সেবা নির্বাচন</label>
                     <div class="relative">
-                        <select name="service" id="service" class="form-control w-full border rounded-lg p-3 appearance-none">
+                        <select name="service" id="service" class="w-full border border-gray-300 rounded-lg p-3 appearance-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent">
                             <option value>সেবা নির্বাচন করুন</option>
                             {% for service in services %}
                             <option value>{{ service.name }}</option>
                             {% endfor %}
                         </select>
-                        <span class="absolute right-3 top-1/2 transform -translate-y-1/2 fa fa-chevron-down"></span>
+                        <span class="absolute right-3 top-1/2 transform -translate-y-1/2 fas fa-chevron-down text-gray-500"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="message" class="block text-green-800 font-medium">বার্তা</label>
-                    <textarea class="form-control w-full border rounded-lg p-3" rows="2" name="message" id="message" placeholder="আপনার বার্তা"></textarea>
-                </div>
-                <div class="form-group flex items-end">
-                    <input type="submit" value="অ্যাপয়েন্টমেন্ট করুন" class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">
-                </div>
-            </form>
+            </div>
+            <div class="mt-6 flex justify-center">
+                <input type="submit" value="বুক করুন" class="bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition-all duration-300 font-noto-bengali shadow-lg">
+            </div>
         </div>
     </div>
 </section>
 
 <!-- About Section -->
-<section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="relative">
-                <img src="{{ about_info.image.url }}" alt="About Image" class="w-full h-96 object-cover rounded-lg shadow-lg border-2 border-gold-500">
-                <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-6 rounded-b-lg font-noto-bengali">
-                    <h3 class="text-xl font-semibold mb-4 text-green-800">ব্যবসার সময়</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium">খোলার দিন:</h4>
-                            <p class="text-gray-600">
-                                <span class="block"><strong>সোমবার – শুক্রবার:</strong> {{ about_info.working_hours }}</span>
-                                <span class="block"><strong>শনিবার:</strong> {{ about_info.saturday_hours }}</span>
-                            </p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium">ছুটির দিন:</h4>
-                            <p class="text-gray-600">
-                                {% for day in about_info.vacation_days.splitlines %}
-                                <span class="block">{{ day }}</span>
-                                {% endfor %}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-4 p-4 bg-green-100 rounded-lg">
-                        <h3 class="text-lg font-semibold text-green-800">জরুরী যোগাযোগ</h3>
-                        <p class="text-gray-600">{{ emergency_contact.phone }}</p>
-                    </div>
-                </div>
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="text-center mb-10">
+            <span class="text-red-600 font-semibold font-noto-bengali">আমাদের সম্পর্কে</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-green-800 font-noto-bengali">{{ about_info.welcome_heading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="order-2 md:order-1">
+                <img src="{{ about_info.image.url }}" alt="About Image" class="w-full h-80 md:h-96 object-cover rounded-lg shadow-lg">
             </div>
-            <div>
-                <span class="text-red-600 font-semibold font-noto-bengali">{{ about_info.welcome_subheading }}</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-green-800 font-noto-bengali">{{ about_info.welcome_heading }}</h2>
-                <p class="text-gray-600 mb-6 font-noto-bengali">{{ about_info.description }}</p>
+            <div class="order-1 md:order-2">
+                <p class="text-gray-600 mb-6 font-noto-bengali leading-relaxed">{{ about_info.description }}</p>
                 <div class="grid grid-cols-3 gap-4 text-center">
-                    <div class="p-4 bg-green-50 rounded-lg">
-                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.happy_customers }}">0</h3>
+                    <div class="p-4 bg-yellow-50 rounded-lg">
+                        <h3 class="text-2xl font-bold text-red-600" data-number="{{ about_info.happy_customers }}">0</h3>
                         <p class="text-gray-600 font-noto-bengali">সন্তুষ্ট গ্রাহক</p>
                     </div>
-                    <div class="p-4 bg-green-50 rounded-lg">
-                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.service_deliver }}">0</h3>
+                    <div class="p-4 bg-yellow-50 rounded-lg">
+                        <h3 class="text-2xl font-bold text-red-600" data-number="{{ about_info.service_deliver }}">0</h3>
                         <p class="text-gray-600 font-noto-bengali">সেবা প্রদান</p>
                     </div>
-                    <div class="p-4 bg-green-50 rounded-lg">
-                        <h3 class="text-3xl font-bold text-red-600" data-number="{{ about_info.years_experience }}">0</h3>
+                    <div class="p-4 bg-yellow-50 rounded-lg">
+                        <h3 class="text-2xl font-bold text-red-600" data-number="{{ about_info.years_experience }}">0</h3>
                         <p class="text-gray-600 font-noto-bengali">অভিজ্ঞতার বছর</p>
                     </div>
+                </div>
+                <div class="mt-6 p-4 bg-green-50 rounded-lg font-noto-bengali">
+                    <h3 class="text-lg font-semibold text-green-800">জরুরী যোগাযোগ</h3>
+                    <p class="text-gray-600">{{ emergency_contact.phone }}</p>
                 </div>
             </div>
         </div>
@@ -129,137 +113,89 @@
 </section>
 
 <!-- Services Section -->
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="text-center mb-10">
             <span class="text-red-600 font-semibold font-noto-bengali">আমাদের সেবা</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">পোকামাকড় নিয়ন্ত্রণ ও পরিচ্ছন্নতা সেবা</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
-                আমরা আপনার পরিবেশকে নিরাপদ ও ঝকঝকে রাখতে শীর্ষস্থানীয় পোকামাকড় নিয়ন্ত্রণ এবং পরিচ্ছন্নতা সেবা প্রদান করি।
-            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-green-800 font-noto-bengali">পোকামাকড় নিয়ন্ত্রণ ও পরিচ্ছন্নতা</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-                <h3 class="text-center text-green-800 text-2xl font-semibold mb-4 font-noto-bengali">🦟 পোকামাকড় নিয়ন্ত্রণ</h3>
-                <div class="space-y-6">
-                    {% for service in services %}
-                    {% if service.category == 'pest_control' %}
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-red-600">
-                        <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">পোকামাকড় নিয়ন্ত্রণ</span>
-                            <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
-                            <p class="text-gray-600 font-noto-bengali">{{ service.description|truncatewords:20 }}</p>
-                            <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-2 inline-block">আরও পড়ুন</a>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for service in services %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+                <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">{{ service.category|title }}</span>
+                    <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
+                    <p class="text-gray-600 font-noto-bengali mt-2">{{ service.description|truncatewords:20 }}</p>
+                    <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-4 inline-block">বিস্তারিত</a>
                 </div>
             </div>
-            <div>
-                <h3 class="text-center text-green-800 text-2xl font-semibold mb-4 font-noto-bengali">🧼 পরিচ্ছন্নতা</h3>
-                <div class="space-y-6">
-                    {% for service in services %}
-                    {% if service.category == 'cleaning' %}
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-red-600">
-                        <img src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'images/placeholder-service.jpg' %}{% endif %}" alt="{{ service.name }}" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-noto-bengali mb-2">পরিচ্ছন্নতা</span>
-                            <h4 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ service.name }}</h4>
-                            <p class="text-gray-600 font-noto-bengali">{{ service.description|truncatewords:20 }}</p>
-                            <a href="#" class="text-red-600 hover:underline font-noto-bengali mt-2 inline-block">আরও পড়ুন</a>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
 <!-- Team Section -->
-<section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <span class="text-red-600 font-semibold font-noto-bengali">টিম এবং কর্মী</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমাদের টিম</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mt-4 font-noto-bengali">
-                আমাদের নিবেদিত টিম পেশাদারিত্ব এবং যত্নের সাথে ব্যতিক্রমী পরিচ্ছন্নতা সেবা প্রদানে প্রতিশ্রুতিবদ্ধ।
-            </p>
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="text-center mb-10">
+            <span class="text-red-600 font-semibold font-noto-bengali">আমাদের টিম</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-green-800 font-noto-bengali">নিবেদিত পেশাদার</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for staff in staff_list %}
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 border-t-4 border-red-600">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
                 <div class="h-64 bg-cover bg-center" style="background-image: url('{{ staff.image.url }}');"></div>
                 <div class="p-6 text-center font-noto-bengali">
                     <h3 class="text-xl font-semibold text-green-800">{{ staff.name }}</h3>
                     <p class="text-gray-600 mb-4">{{ staff.position }}</p>
-                    <div class="flex justify-center space-x-4">
+                    <div class="flex justify-center gap-4">
                         {% if staff.twitter %}
-                        <a href="{{ staff.twitter }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+                        <a href="{{ staff.twitter }}" class="text-gray-600 hover:text-red-600"><i class="fab fa-twitter"></i></a>
                         {% endif %}
                         {% if staff.facebook %}
-                        <a href="{{ staff.facebook }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-facebook"></i>
-                        </a>
+                        <a href="{{ staff.facebook }}" class="text-gray-600 hover:text-red-600"><i class="fab fa-facebook"></i></a>
                         {% endif %}
                         {% if staff.google %}
-                        <a href="{{ staff.google }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-google"></i>
-                        </a>
+                        <a href="{{ staff.google }}" class="text-gray-600 hover:text-red-600"><i class="fab fa-google"></i></a>
                         {% endif %}
                         {% if staff.instagram %}
-                        <a href="{{ staff.instagram }}" class="text-gray-600 hover:text-red-600">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="{{ staff.instagram }}" class="text-gray-600 hover:text-red-600"><i class="fab fa-instagram"></i></a>
                         {% endif %}
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <div class="text-center mt-8">
-            <a href="#" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">সকল কর্মী দেখুন</a>
-        </div>
     </div>
 </section>
 
 <!-- Testimonies Section -->
-<section class="py-16 bg-gray-900 text-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <span class="text-red-600 font-semibold font-noto-bengali">প্রশংসাপত্র</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 font-noto-bengali">সন্তুষ্ট গ্রাহক</h2>
+<section class="py-12 bg-green-800 text-white">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="text-center mb-10">
+            <span class="text-yellow-400 font-semibold font-noto-bengali">প্রশংসাপত্র</span>
+            <h2 class="text-3xl md:text-4xl font-bold font-noto-bengali">আমাদের গ্রাহকদের মতামত</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {% for testimony in testimonies %}
-            <div class="bg-gray-800 rounded-lg p-6 text-center">
-                <div class="flex justify-center mb-4">
-                    <span class="text-3xl text-red-600 fa fa-quote-right"></span>
-                </div>
-                <p class="text-gray-300 mb-4 font-noto-bengali">{{ testimony.text|truncatewords:30 }}</p>
+            <div class="bg-gray-700 rounded-lg p-6 text-center">
+                <p class="text-gray-200 mb-4 font-noto-bengali">{{ testimony.text|truncatewords:25 }}</p>
                 <div class="flex items-center justify-center">
                     <div class="w-12 h-12 bg-cover bg-center rounded-full" style="background-image: url('{% static 'images/person_'|add:forloop.counter|add:'.jpg' %}');"></div>
                     <div class="ml-3 text-left">
-                        <p class="font-semibold font-noto-bengali">{{ testimony.name }}</p>
+                        <p class="font-semibold font-noto-bengali text-white">{{ testimony.name }}</p>
                         <span class="text-gray-400">{{ testimony.position }}</span>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="bg-gray-800 rounded-lg p-6 text-center">
-                <div class="flex justify-center mb-4">
-                    <span class="text-3xl text-red-600 fa fa-quote-right"></span>
-                </div>
-                <p class="text-gray-300 mb-4 font-noto-bengali">দূরে, পাহাড়ের পিছনে, ভোকালিয়া এবং কনসোনান্টিয়া দেশ থেকে দূরে, সেখানে অন্ধ পাঠ্য বাস করে।</p>
+            <div class="bg-gray-700 rounded-lg p-6 text-center">
+                <p class="text-gray-200 mb-4 font-noto-bengali">আমাদের সেবায় গ্রাহকদের সন্তুষ্টি আমাদের প্রধান লক্ষ্য।</p>
                 <div class="flex items-center justify-center">
                     <div class="w-12 h-12 bg-cover bg-center rounded-full" style="background-image: url('{% static 'images/person_1.jpg' %}');"></div>
                     <div class="ml-3 text-left">
-                        <p class="font-semibold font-noto-bengali">রজার স্কট</p>
+                        <p class="font-semibold font-noto-bengali text-white">রজার স্কট</p>
                         <span class="text-gray-400">মার্কেটিং ম্যানেজার</span>
                     </div>
                 </div>
@@ -270,21 +206,21 @@
 </section>
 
 <!-- Projects Section -->
-<section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="text-center mb-10">
             <span class="text-red-600 font-semibold font-noto-bengali">আমাদের প্রকল্প</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আমরা অনেক সাম্প্রতিক পরিচ্ছন্নতা প্রকল্প সম্পন্ন করেছি</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-green-800 font-noto-bengali">সাম্প্রতিক কাজ</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for project in projects %}
             <div class="relative group">
                 <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
-                <div class="absolute inset-0 bg-green-900/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                    <a href="{{ project.image.url }}" class="text-white text-2xl fa fa-expand"></a>
+                <div class="absolute inset-0 bg-green-800/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center rounded-lg">
+                    <a href="{{ project.image.url }}" class="text-white text-2xl fas fa-search-plus"></a>
                 </div>
                 <div class="text-center mt-4">
-                    <h3 class="text-xl font-semibold text-green-800 font-noto-bengali">{{ project.title }}</h3>
+                    <h3 class="text-lg font-semibold text-green-800 font-noto-bengali">{{ project.title }}</h3>
                 </div>
             </div>
             {% endfor %}
@@ -292,85 +228,31 @@
     </div>
 </section>
 
-<!-- Video Section -->
-<section class="py-16 bg-gray-100">
-    <div class="container-fluid px-0">
-        {% if intro_section.video_file %}
-        <div class="relative w-full h-96 md:h-[36rem]">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                <source src="{{ intro_section.video_file.url }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        {% endif %}
-    </div>
-</section>
-
 <!-- Pricing Section -->
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <span class="text-red-600 font-semibold font-noto-bengali">মূল্য এবং পরিকল্পনা</span>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-green-800 font-noto-bengali">আপনার নিখুঁত পরিকল্পনা নির্বাচন করুন</h2>
+<section class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+        <div class="text-center mb-10">
+            <span class="text-red-600 font-semibold font-noto-bengali">মূল্য পরিকল্পনা</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-green-800 font-noto-bengali">আপনার জন্য উপযুক্ত প্যাকেজ</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
-                <span class="text-3xl text-green-800 fa flaticon-sprayer mb-4 block"></span>
-                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">স্টার্টার</h4>
-                <span class="text-3xl font-bold text-red-600"><sup>$</sup>49</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for plan in pricing_plans %}
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition-all duration-300">
+                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-3">{{ plan.name }}</h4>
+                <span class="text-3xl font-bold text-red-600"><sup>$</sup>{{ plan.price }}</span>
                 <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
-                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
-                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
+                    {% for feature in plan.features %}
+                    <li><i class="fas fa-check mr-2 text-green-600"></i>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
-                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
+                <a href="#" class="bg-yellow-400 text-green-900 px-6 py-3 rounded-full hover:bg-yellow-500 transition-all duration-300 font-noto-bengali">নির্বাচন করুন</a>
             </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600 transform scale-105">
-                <span class="text-3xl text-green-800 fa flaticon-vacuum-cleaner mb-4 block"></span>
-                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">স্ট্যান্ডার্ড</h4>
-                <span class="text-3xl font-bold text-red-600"><sup>$</sup>79</span>
-                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
-                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
-                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
-                </ul>
-                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
-                <span class="text-3xl text-green-800 fa flaticon-tap mb-4 block"></span>
-                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">প্রিমিয়াম</h4>
-                <span class="text-3xl font-bold text-red-600"><sup>$</sup>109</span>
-                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
-                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
-                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
-                </ul>
-                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-red-600">
-                <span class="text-3xl text-green-800 fa flaticon-cleaning mb-4 block"></span>
-                <h4 class="text-xl font-semibold text-green-800 font-noto-bengali mb-2">প্লাটিনাম</h4>
-                <span class="text-3xl font-bold text-red-600"><sup>$</sup>159</span>
-                <ul class="text-gray-600 font-noto-bengali my-6 space-y-2">
-                    <li><i class="fa fa-check mr-2"></i>বেডরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>ভ্যাকুয়ামিং</li>
-                    <li><i class="fa fa-check mr-2"></i>বাথরুম পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>আয়না পরিষ্কার</li>
-                    <li><i class="fa fa-check mr-2"></i>লিভিং রুম পরিষ্কার</li>
-                </ul>
-                <a href="#" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-noto-bengali">শুরু করুন</a>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- Include Tailwind CSS, Font Awesome, and Noto Serif Bengali -->
+<!-- Dependencies -->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
@@ -379,12 +261,22 @@
     .font-noto-bengali {
         font-family: 'Noto Serif Bengali', serif;
     }
+    @keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    .animate-slide-in-left { animation: slideInLeft 0.8s ease-out; }
+    .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
 </style>
 
 <!-- Counter Animation Script -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.text-3xl[data-number]');
+    const counters = document.querySelectorAll('.text-2xl[data-number]');
     counters.forEach(counter => {
         const updateCount = () => {
             const target = +counter.getAttribute('data-number');
