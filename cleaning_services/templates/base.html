@@ -212,10 +212,10 @@
             }
         }
 
-        /* Floating WhatsApp and Messenger Buttons */
+        /* Floating WhatsApp and Messenger Buttons - Right Side, Vertically Centered */
         .floating-whatsapp, .floating-messenger {
             position: fixed;
-            bottom: 20px;
+            right: 20px;
             z-index: 9999;
             width: 56px;
             height: 56px;
@@ -229,14 +229,16 @@
             cursor: pointer;
             animation: bounceIn 0.8s cubic-bezier(.68,-0.55,.27,1.55);
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            left: auto; /* Remove left positioning */
         }
         .floating-whatsapp {
-            left: 20px;
+            top: 50%;
+            margin-top: -34px; /* half of (button height + margin) for two buttons */
             background: #25D366;
             animation-delay: 0.2s;
         }
         .floating-messenger {
-            right: 20px;
+            top: calc(50% + 66px); /* 56px button + 10px margin */
             background: #0084FF;
             animation-delay: 0.4s;
         }
@@ -301,12 +303,21 @@
                 width: 44px;
                 height: 44px;
                 font-size: 1.4rem;
-                left: 12px;
                 right: 12px;
-                bottom: 12px;
+                left: auto;
             }
-            .floating-whatsapp { left: 12px; }
-            .floating-messenger { right: 12px; }
+            .floating-whatsapp {
+                top: 50%;
+                margin-top: -27px;
+            }
+            .floating-messenger {
+                top: calc(50% + 54px);
+            }
+        }
+        @media (max-width: 640px) {
+            .top-bar-link {
+                word-break: break-all;
+            }
         }
     </style>
 
@@ -316,18 +327,18 @@
 
 <body>
     <!-- Top Bar -->
-    <div class="bg-green-900 text-white py-3">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-2 md:mb-0 font-noto-bengali">
+    <div class="bg-green-900 text-white py-2">
+        <div class="container mx-auto px-2 sm:px-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 text-sm">
+                <div class="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2 font-noto-bengali text-center sm:text-left">
                     {% if contact.phone %}
                     <span>ফোন নম্বর:</span>
-                    <a href="tel:{{ contact.phone }}" class="hover:underline">{{ contact.phone }}</a>
+                    <a href="tel:{{ contact.phone }}" class="hover:underline break-all">{{ contact.phone }}</a>
                     {% endif %}
                     {% if contact.email %}
-                    <span class="mx-2">|</span>
+                    <span class="hidden sm:inline mx-2">|</span>
                     <span>ইমেইল:</span>
-                    <a href="mailto:{{ contact.email }}" class="hover:underline">{{ contact.email }}</a>
+                    <a href="mailto:{{ contact.email }}" class="hover:underline break-all">{{ contact.email }}</a>
                     {% endif %}
                 </div>
                 <div class="flex space-x-4">
@@ -348,16 +359,17 @@
 
     <!-- Navbar -->
     <nav class="bg-red-600 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-3">
+        <div class="container mx-auto px-2 sm:px-4 py-3">
             <div class="flex justify-between items-center">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'images/101.webp' %}" alt="লোগো" class="h-16 md:h-14">
                 </a>
-                <button class="md:hidden text-white focus:outline-none navbar-toggler" type="button"
-                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Hamburger Icon -->
+                <button id="navbar-toggle" class="md:hidden text-white focus:outline-none" type="button" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars text-2xl"></i>
                 </button>
-                <div class="hidden md:flex md:items-center navbar-nav" id="ftco-nav">
+                <!-- Menu -->
+                <div id="ftco-nav" class="hidden md:flex md:items-center navbar-nav">
                     <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 font-noto-bengali">
                         <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">হোম</a></li>
                         <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">আমাদের সম্পর্কে</a></li>
@@ -471,11 +483,11 @@
     </div>
 
     <!-- Floating WhatsApp and Messenger Buttons -->
-    <a href="https://wa.me/your_number_here" class="floating-whatsapp" target="_blank" aria-label="WhatsApp" data-tooltip="Chat on WhatsApp">
+    <a href="https://wa.me/your_number_here" class="floating-whatsapp" target="_blank" aria-label="WhatsApp" data-tooltip="Contact Us on WhatsApp">
         <span class="pulse"></span>
         <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://m.me/your_page_here" class="floating-messenger" target="_blank" aria-label="Messenger" data-tooltip="Message on Messenger">
+    <a href="https://m.me/your_page_here" class="floating-messenger" target="_blank" aria-label="Messenger" data-tooltip="Contact Us on Messenger">
         <span class="pulse"></span>
         <i class="fab fa-facebook-messenger"></i>
     </a>
@@ -499,24 +511,22 @@
     <!-- JavaScript for Navbar Toggle and Active State -->
     <script>
         // Navbar toggle for mobile
-        document.querySelector('.navbar-toggler').addEventListener('click', () => {
-            const nav = document.querySelector('#ftco-nav');
-            nav.classList.toggle('hidden');
-        });
-
-        // Set active class based on current URL
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            const currentPath = window.location.pathname;
-
-            navLinks.forEach(link => {
-                const linkPath = new URL(link.href).pathname;
-                if (linkPath === currentPath) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('navbar-toggle');
+            const nav = document.getElementById('ftco-nav');
+            if (toggleBtn && nav) {
+                toggleBtn.addEventListener('click', () => {
+                    nav.classList.toggle('hidden');
+                });
+                // Optional: Close menu when a link is clicked (on mobile)
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 768) {
+                            nav.classList.add('hidden');
+                        }
+                    });
+                });
+            }
         });
     </script>
     {% endblock %}
