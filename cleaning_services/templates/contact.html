@@ -80,17 +80,29 @@
                                 {% endif %}
                             </div>
                             <div class="form-group">
-                                <label class="block text-green-800 font-medium" for="email">ইমেইল ঠিকানা</label>
-                                <input type="email" class="form-control w-full border rounded-lg p-3" name="email" id="email" placeholder="ইমেইল" value="{{ form.email.value|default_if_none:'' }}">
-                                {% if form.email.errors %}
-                                    <div class="text-red-600 text-sm">{{ form.email.errors }}</div>
+                                <label class="block text-green-800 font-medium" for="phone">ফোন নম্বর</label>
+                                <input type="text" class="form-control w-full border rounded-lg p-3" name="phone" id="phone" placeholder="ফোন নম্বর" value="{{ form.phone.value|default_if_none:'' }}">
+                                {% if form.phone.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.phone.errors }}</div>
                                 {% endif %}
                             </div>
                             <div class="form-group md:col-span-2">
-                                <label class="block text-green-800 font-medium" for="subject">বিষয়</label>
-                                <input type="text" class="form-control w-full border rounded-lg p-3" name="subject" id="subject" placeholder="বিষয়" value="{{ form.subject.value|default_if_none:'' }}">
-                                {% if form.subject.errors %}
-                                    <div class="text-red-600 text-sm">{{ form.subject.errors }}</div>
+                                <label class="block text-green-800 font-medium" for="address">ঠিকানা</label>
+                                <input type="text" class="form-control w-full border rounded-lg p-3" name="address" id="address" placeholder="ঠিকানা" value="{{ form.address.value|default_if_none:'' }}">
+                                {% if form.address.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.address.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group md:col-span-2">
+                                <label class="block text-green-800 font-medium" for="service">সেবা নির্বাচন করুন</label>
+                                <select name="service" id="service" class="form-control w-full border rounded-lg p-3">
+                                    <option value="">সেবা নির্বাচন করুন</option>
+                                    {% for service in form.fields.service.queryset %}
+                                        <option value="{{ service.pk }}" {% if form.service.value|stringformat:'s' == service.pk|stringformat:'s' %}selected{% endif %}>{{ service.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                {% if form.service.errors %}
+                                    <div class="text-red-600 text-sm">{{ form.service.errors }}</div>
                                 {% endif %}
                             </div>
                             <div class="form-group md:col-span-2">
@@ -110,11 +122,6 @@
                 <div class="relative">
                     <img src="{% static 'images/about.jpg' %}" alt="Contact Image" class="w-full h-full object-cover rounded-lg shadow-lg border-2 border-gold-500">
                 </div>
-            </div>
-
-            <!-- Map -->
-            <div class="mt-8">
-                <div id="map" class="w-full h-96 rounded-lg shadow-lg"></div>
             </div>
         </div>
     </div>

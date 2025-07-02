@@ -319,6 +319,100 @@
                 word-break: break-all;
             }
         }
+
+        #headline-slider .slide {
+            background-size: cover;
+            background-position: center;
+            min-height: 12rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        #headline-slider .offer-text {
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            min-width: 220px;
+            max-width: 90vw;
+            text-align: center;
+            font-family: 'Noto Serif Bengali', serif;
+        }
+        @media (min-width: 768px) {
+            #headline-slider .offer-text {
+                font-size: 2.2rem;
+                min-width: 350px;
+            }
+            #headline-slider .slide {
+                min-height: 16rem;
+            }
+        }
+        #headline-slider .slider-dot.active {
+            background: #FFD700;
+            box-shadow: 0 0 0 2px #fff;
+        }
+        #headline-slider .collage {
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .collage-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            border: 2px solid #fff;
+            background: #eee;
+            transition: transform 0.2s;
+        }
+        .collage-img:hover {
+            transform: scale(1.08) rotate(-2deg);
+            z-index: 2;
+        }
+        @media (min-width: 768px) {
+            .collage-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Infinite Marquee Photo Collage */
+        .marquee-container {
+            position: relative;
+            width: 100vw;
+            overflow: hidden;
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            border: 2px solid #fff;
+            background: #eee;
+            margin-right: 1rem;
+        }
+        @media (min-width: 768px) {
+            .marquee-img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 
     {% block extra_css %}
@@ -371,10 +465,10 @@
                 <!-- Menu -->
                 <div id="ftco-nav" class="hidden md:flex md:items-center navbar-nav">
                     <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 font-noto-bengali">
-                        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">হোম</a></li>
-                        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">আমাদের সম্পর্কে</a></li>
-                        <li class="nav-item"><a href="{% url 'services' %}" class="nav-link">সেবা</a></li>
-                        <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">যোগাযোগ</a></li>
+                        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active text-gold-400 font-semibold{% endif %}">হোম</a></li>
+                        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link {% if request.path == '/about/' %}active text-gold-400 font-semibold{% endif %}">আমাদের সম্পর্কে</a></li>
+                        <li class="nav-item"><a href="{% url 'services' %}" class="nav-link {% if request.path == '/services/' %}active text-gold-400 font-semibold{% endif %}">সেবা</a></li>
+                        <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link {% if request.path == '/contact/' %}active text-gold-400 font-semibold{% endif %}">যোগাযোগ</a></li>
                     </ul>
                 </div>
             </div>
@@ -436,7 +530,7 @@
 
                 <!-- Contact Info -->
                 <div>
-                    <h2 class="footer-heading text-2xl font-bold font-noto-bengali">প্রশ্ন আছে?</h2>
+                    <h2 class="footer-heading text-2xl font-bold font-noto-bengali">যোগাযোগ</h2>
                     <ul class="space-y-4 font-noto-bengali">
                         <li class="flex items-start">
                             <span class="text-gold-400 fa fa-map-marker mr-2 mt-1"></span>
@@ -496,11 +590,6 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script>
-        // Simple navbar toggle for mobile
-        document.querySelector('.navbar-toggler').addEventListener('click', () => {
-            document.querySelector('#ftco-nav').classList.toggle('hidden');
-        });
-
         // Hide loader after page load
         window.addEventListener('load', () => {
             document.querySelector('#ftco-loader').classList.add('hidden');
@@ -510,12 +599,12 @@
     {% block extra_js %}
     <!-- JavaScript for Navbar Toggle and Active State -->
     <script>
-        // Navbar toggle for mobile
         document.addEventListener('DOMContentLoaded', function () {
             const toggleBtn = document.getElementById('navbar-toggle');
             const nav = document.getElementById('ftco-nav');
             if (toggleBtn && nav) {
                 toggleBtn.addEventListener('click', () => {
+                    console.log('Hamburger clicked');
                     nav.classList.toggle('hidden');
                 });
                 // Optional: Close menu when a link is clicked (on mobile)
@@ -528,6 +617,54 @@
                 });
             }
         });
+    </script>
+
+    <!-- Headline Slider with Typing Effect for Collage Slides -->
+    <script>
+    // Headline Slider with Typing Effect for Collage Slides
+    const slides = document.querySelectorAll('#headline-slider .slide');
+    const dots = document.querySelectorAll('#headline-slider .slider-dot');
+    const offers = [
+        '৫০% ছাড়! আজই বুক করুন',
+        'ফ্রি ইনস্পেকশন! সীমিত সময়',
+        'নতুন গ্রাহকদের জন্য বিশেষ ছাড়'
+    ];
+    let currentSlide = 0;
+    let typingTimeout;
+
+    function showSlide(idx) {
+        slides.forEach((slide, i) => {
+            slide.style.opacity = i === idx ? '1' : '0';
+            slide.style.zIndex = i === idx ? '10' : '0';
+            dots[i].classList.toggle('active', i === idx);
+        });
+        // Set up offer text with typing effect
+        let offerText = offers[idx];
+        let offerSpan = slides[idx].querySelector('.offer-text');
+        offerSpan.textContent = '';
+        if (typingTimeout) clearTimeout(typingTimeout);
+        typeOffer(offerSpan, offerText, 0);
+    }
+    function typeOffer(el, text, i) {
+        if (i <= text.length) {
+            el.textContent = text.slice(0, i);
+            typingTimeout = setTimeout(() => typeOffer(el, text, i + 1), 60);
+        }
+    }
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            currentSlide = i;
+            showSlide(currentSlide);
+        });
+    });
+    // Auto-advance
+    setInterval(nextSlide, 5000);
+    // Init
+    showSlide(0);
     </script>
     {% endblock %}
 </body>
